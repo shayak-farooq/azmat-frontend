@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .bg-brand {
+    background-color: #f8f3f0;
+  }
+}
