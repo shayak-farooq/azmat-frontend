@@ -1,16 +1,19 @@
 import Footer from "./components/Footer";
-import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-import Otp from "./components/Otp";
-import Signup from "./components/Signup";
+import Signup from "./pages/Signup"
+import Login from "./pages//Login"
+import Forgottenpassword from "./pages//Forgottenpassword"
+
+import Signupotp from "./pages/Signupotp"
 import Slider from "./components/Slider";
 import Products from "./pages/Product";
 function App() {
   return (
     <>
-      <Signup/>
-      <Otp/>
-      <Login/>
+    <Signup/>
+    <Login/>
+    <Forgottenpassword/>
+    <Signupotp/>
       <Navbar/>
       <Slider/>
       <Products/>
