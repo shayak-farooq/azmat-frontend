@@ -35,6 +35,7 @@ function Otp() {
               Submit
             </button>
           </form>
+          
         </div>
       </div>
     </>
