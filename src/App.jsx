@@ -1,8 +1,7 @@
-
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
-import Slider from './components/Slider'
-import Products from './pages/Product'
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Slider from "./components/Slider";
+import Products from "./pages/Product";
 function App() {
   return (
     <>
@@ -13,7 +12,7 @@ function App() {
       <Footer/> 
     </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

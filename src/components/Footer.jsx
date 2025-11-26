@@ -34,7 +34,6 @@ function Footer() {
                         <li><a href="">Contact us</a></li>
                         <li><a href="">Blog </a></li>
                         <li><a href="">MyCart </a></li>
-                        <li><a href="">MyWishlist</a></li>
                     </ul>
                     <button onClick={() => { setToggleSections2(!toggleSections2) }} className='md:hidden absolute right-5 top-0'>{toggleSections2 ? "+" : "-"}</button>
                 </div>
@@ -87,7 +86,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className='bg-brand text-center p-2'>&copy; 2025 Azmat , All Rights Reserved.</div>
+            <div className='bg-brand text-center p-2 text-zinc-500'>&copy; 2025 Azmat , All Rights Reserved.</div>
         </>
     )
 }
