@@ -22,7 +22,6 @@ function Navbar() {
 
                     <div className='flex gap-x-8 px-10 justify-center items-center text-2xl'>
                         <VscAccount className='' />
-                        <AiOutlineHeart className=''/>
                         <MdOutlineShoppingCart className=''/>
                     </div>
                 </nav>

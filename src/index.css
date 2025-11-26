@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
 
 @layer utilities {
   .bg-brand {
     background-color: #f8f3f0;
   }
+}
+
+@theme{
+  --font-opensans: "Open Sans", sans-serif
 }
