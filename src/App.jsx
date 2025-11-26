@@ -6,10 +6,12 @@ import Products from './pages/Product'
 function App() {
   return (
     <>
+    <div className='font-opensans font-medium'>
       <Navbar />
       <Slider/>
       <Products/>
-      <Footer/>
+      <Footer/> 
+    </div>
     </>
   )
 }

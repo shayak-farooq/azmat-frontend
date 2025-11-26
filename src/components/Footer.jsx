@@ -10,7 +10,7 @@ function Footer() {
     const [toggleSections4, setToggleSections4] = useState(true)
     return (
         <>
-            <div className='md:flex flex-wrap container mx-auto gap-4 justify-around md:py-24 md:px-10 *:'>
+            <div className='md:flex flex-wrap container mx-auto gap-4 justify-around md:py-24 px-10 *:'>
                 {/* section-1 */}
                 <div className='flex-1 pt-10 pl-5 sm:pb-3'>
                     <h1>
