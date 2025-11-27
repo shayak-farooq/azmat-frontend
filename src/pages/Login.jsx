@@ -1,12 +1,14 @@
 import { NavLink } from "react-router-dom";
- 
-
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Login() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="bg-brand shadow-xl rounded-xl p-8 w-full max-w-md">
+    <>
+    <Navbar/>
+    
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="bg-brand shadow-xl rounded-xl p-8 w-full max-w-md">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-6">
             Login
           </h2>
@@ -35,30 +37,34 @@ export default function Login() {
             </label>
 
             {/* Submit Button */}
-            <button type="submit" className= "bg-amber-400 hover:bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors">
+            <button
+              type="submit"
+              className="bg-amber-400 hover:bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors"
+            >
               Login
             </button>
             <NavLink
-              to=""
+              to="/Forgottenpassword"
               className=" text-gray-400 hover:text-amber-600 text-l text-center underline"
             >
               forgotten password
             </NavLink>
           </form>
-        
 
-        <div className="flex flex-col my-6">
-          <h3 className="text-center font-bold text-lg">
-            Don't have an account?
-          </h3>
-          <NavLink
-            to="#"
-            className="text-center text-amber-600 text-xl underline"
-          >
-            create account?
-          </NavLink>
+          <div className="flex flex-col my-6">
+            <h3 className="text-center font-bold text-lg">
+              Don't have an account?
+            </h3>
+            <NavLink
+              to="/Signup"
+              className="text-center text-amber-600 text-xl underline"
+            >
+              create account?
+            </NavLink>
+          </div>
         </div>
       </div>
-    </div>
+      <Footer/>
+    </>
   );
 }
