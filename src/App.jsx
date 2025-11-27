@@ -8,6 +8,7 @@ import Signupotp from "./pages/Signupotp";
 import Slider from "./components/Slider";
 import Products from "./pages/Product";
 import { Route, Routes } from "react-router-dom";
+
 function App() {
   return (
     <>
