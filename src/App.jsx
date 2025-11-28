@@ -8,6 +8,7 @@ import Signupotp from "./pages/Signupotp";
 import Slider from "./components/Slider";
 import Products from "./pages/Product";
 import { Route, Routes } from "react-router-dom";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -19,11 +20,12 @@ function App() {
         <Route path="/Forgottenpassword" element={<Forgottenpassword />} />
         <Route path="/Signupotp" element={<Signupotp />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
 
-      <Slider />
+      {/* <Slider />
       <Products />
-      <Footer />
+      <Footer /> */}
     </>
   );
 }

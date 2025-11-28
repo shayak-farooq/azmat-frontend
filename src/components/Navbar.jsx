@@ -2,16 +2,19 @@ import LOGO from '../assets/Images/azmat_logo.png'
 import { VscAccount } from "react-icons/vsc";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross2 } from "react-icons/rx";
 import { useEffect, useState } from 'react';
 
 function Navbar() {
     const [swipeSlider,setSwipeSlider] = useState(false)
     return (
         <>
-            <div className='bg-brand relative shadow-lg'>
-                <nav className="flex justify-between py-4 container mx-auto ">
-                    {/* links --> desktop view */}
-                        <ul className="lg:flex justify-center items-center ml-2 text-xl *:px-5 hidden">
+            <div className='bg-brand shadow-lg'>
+                <nav className="flex justify-between py-4 container">
+                    <button className='lg:hidden ml-3' onClick={()=>{setSwipeSlider(!swipeSlider)}}><GiHamburgerMenu /></button>
+                    {/* links */}
+                        <ul className={`lg:flex justify-center items-center lg:ml-2 text-xl lg:*:px-5 ${swipeSlider? 'flex-col absolute bg-white w-1/2 h-dvh top-0 left-0 *:border-b *:border-b-zinc-400 *:p-3' : 'hidden'}`}>
+                            <li className={`${swipeSlider? '':'hidden'} flex justify-end items-center` }> <button onClick={()=>{setSwipeSlider(!swipeSlider)}}><RxCross2 className='m-2'/></button> </li>
                             <li>Home</li>
                             <li>About Us</li>
                             <li>Blog</li>
@@ -22,19 +25,10 @@ function Navbar() {
                         <img className='h-10 w-auto object-contain' src={LOGO} alt="" />
                     </div>
                     <div className='flex gap-x-8 px-10 justify-center items-center text-2xl'>
-                    <button className='lg:hidden' onClick={()=>{setSwipeSlider(!swipeSlider)}}><GiHamburgerMenu /></button>
                         <VscAccount className='' />
                         <MdOutlineShoppingCart className=''/>
                     </div>
                 </nav>
-                {/* links --> mobile view */}
-                       {swipeSlider? "" : <ul className="top-0 absolute w-1/2 bg-white h-dvh">
-                            <li className='border-b border-b-zinc-300 pl-4 py-3 flex justify-end items-center pr-4'><button className='' onClick={()=>{setSwipeSlider(!swipeSlider)}}>X</button></li>
-                            <li className='border-b border-b-zinc-300 pl-4 py-3'>HOME</li>
-                            <li className='border-b border-b-zinc-300 pl-4 py-3'>ABOUT US</li>
-                            <li className='border-b border-b-zinc-300 pl-4 py-3'>BLOG</li>
-                            <li className='border-b border-b-zinc-300 pl-4 py-3'>CONTANT</li>
-                        </ul>}
             </div>
         </>
     );
