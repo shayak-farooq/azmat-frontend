@@ -12,10 +12,12 @@ import { AiOutlineMail } from "react-icons/ai";
   /*email*/
 }
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Contact() {
   return (
     <>
+    <Navbar/>
       {/* === CONTACT CARDS SECTION === */}
       <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-10 py-12 px-4">
         {/* Contact Card Component */}
@@ -189,6 +191,7 @@ function Contact() {
           </button>
         </form>
       </div>
+      <Footer/>
     </>
   );
 }
