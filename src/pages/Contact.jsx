@@ -131,7 +131,7 @@ function Contact() {
                 placeholder="first name"
                 className="mt-1 border border-gray-300 rounded-lg px-4 py-2 
                      focus:ring-2 focus:ring-amber-400 outline-none"
-              />
+              required/>
             </div>
 
             <div className="flex flex-col">
@@ -141,7 +141,7 @@ function Contact() {
                 placeholder="last name"
                 className="mt-1 border border-gray-300 rounded-lg px-4 py-2 
                      focus:ring-2 focus:ring-amber-400 outline-none"
-              />
+              required/>
             </div>
 
             <div className="flex flex-col">
@@ -150,8 +150,8 @@ function Contact() {
                 type="tel"
                 placeholder="enter your number"
                 className="mt-1 border border-gray-300 rounded-lg px-4 py-2 
-                     focus:ring-2 focus:ring-amber-400 outline-none"
-              />
+                     focus:ring-2 focus:ring-amber-400 outline-none" minLength={10} maxLength={10}
+              required/>
             </div>
 
             <div className="flex flex-col">
@@ -161,7 +161,7 @@ function Contact() {
                 placeholder="enter your email here"
                 className="mt-1 border border-gray-300 rounded-lg px-4 py-2 
                      focus:ring-2 focus:ring-amber-400 outline-none"
-              />
+               required/>
             </div>
           </div>
 
@@ -174,8 +174,8 @@ function Contact() {
               rows="6"
               placeholder="Write your message..."
               className="mt-1 border border-gray-300 rounded-lg px-4 py-2 
-                   focus:ring-2 focus:ring-amber-400 outline-none resize-y"
-            ></textarea>
+                   focus:ring-2 focus:ring-amber-400 outline-none resize-y" minLength={20 }
+            required></textarea>
           </div>
 
           {/* Submit Button */}

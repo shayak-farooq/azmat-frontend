@@ -1,3 +1,6 @@
+import { NavLink } from "react-router";
+import Login from "./Login";
+
 function Otp() {
   return (
     <>
@@ -27,6 +30,7 @@ function Otp() {
             >
               Submit
             </button>
+            <NavLink to='/login' className=" text-gray-400 hover:text-amber-600 text-l text-center underline">back</NavLink>
           </form>
         </div>
       </div>

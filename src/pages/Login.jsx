@@ -44,7 +44,7 @@ export default function Login() {
               Login
             </button>
             <NavLink
-              to="/Forgottenpassword"
+              to="/forgottenpassword"
               className=" text-gray-400 hover:text-amber-600 text-l text-center underline"
             >
               forgotten password
@@ -56,7 +56,7 @@ export default function Login() {
               Don't have an account?
             </h3>
             <NavLink
-              to="/Signup"
+              to="/signup"
               className="text-center text-amber-600 text-xl underline"
             >
               create account?

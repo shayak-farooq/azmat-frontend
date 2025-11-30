@@ -58,7 +58,7 @@ function Signup() {
           </form>
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-semibold pt-3">Already an account?</h3>
-            <NavLink to='/Login' className=" text-amber-600 text-l underline">Log in</NavLink>
+            <NavLink to='/login' className=" text-amber-600 text-l underline">Log in</NavLink>
           </div>
         </div>
       </div>
