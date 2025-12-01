@@ -9,17 +9,22 @@ import Slider from "./components/Slider";
 import Products from "./pages/Product";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navbar />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Forgottenpassword" element={<Forgottenpassword />} />
-        <Route path="/Signupotp" element={<Signupotp />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgottenpassword" element={<Forgottenpassword />} />
+        <Route path="/signupotp" element={<Signupotp />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
 
