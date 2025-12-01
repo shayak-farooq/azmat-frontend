@@ -4,6 +4,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
     const [swipeSlider,setSwipeSlider] = useState(false)
@@ -16,7 +17,7 @@ function Navbar() {
                         <ul className={`lg:flex justify-center items-center lg:ml-2 text-xl lg:*:px-5 ${swipeSlider? 'flex-col absolute bg-white w-1/2 h-dvh top-0 left-0 *:border-b *:border-b-zinc-400 *:p-3' : 'hidden'}`}>
                             <li className={`${swipeSlider? '':'hidden'} flex justify-end items-center` }> <button onClick={()=>{setSwipeSlider(!swipeSlider)}}><RxCross2 className='m-2'/></button> </li>
                             <li>Home</li>
-                            <li>About Us</li>
+                            <NavLink to='/about'>About Us</NavLink>
                             <li>Blog</li>
                             <li>Contact</li>
                         </ul>
@@ -25,7 +26,7 @@ function Navbar() {
                         <img className='h-10 w-auto object-contain' src={LOGO} alt="" />
                     </div>
                     <div className='flex gap-x-8 px-10 justify-center items-center text-2xl'>
-                        <VscAccount className='' />
+                        <NavLink to='/profile'><VscAccount className='' /></NavLink> 
                         <MdOutlineShoppingCart className=''/>
                     </div>
                 </nav>
