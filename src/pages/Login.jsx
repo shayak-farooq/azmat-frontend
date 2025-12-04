@@ -5,8 +5,6 @@ import Footer from "../components/Footer";
 export default function Login() {
   return (
     <>
-    <Navbar/>
-    
       <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="bg-brand shadow-xl rounded-xl p-8 w-full max-w-md">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-6">
@@ -44,7 +42,7 @@ export default function Login() {
               Login
             </button>
             <NavLink
-              to="/forgottenpassword"
+              to="/Forgottenpassword"
               className=" text-gray-400 hover:text-amber-600 text-l text-center underline"
             >
               forgotten password
@@ -56,7 +54,7 @@ export default function Login() {
               Don't have an account?
             </h3>
             <NavLink
-              to="/signup"
+              to="/Signup"
               className="text-center text-amber-600 text-xl underline"
             >
               create account?
@@ -64,7 +62,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <Footer/>
     </>
   );
 }

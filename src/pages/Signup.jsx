@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function Signup() {
+  
+[data, setData]=useState({username:"", email:"",password:"" })
+function handleChange(){
+
+}
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-white">
@@ -17,7 +22,7 @@ function Signup() {
               <input
                 type="text"
                 className="mt-1 border bg-white border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-                placeholder="Enter your username"
+                placeholder="Enter your username" 
                 required
               />
             </label>
@@ -58,7 +63,7 @@ function Signup() {
           </form>
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-semibold pt-3">Already an account?</h3>
-            <NavLink to='/login' className=" text-amber-600 text-l underline">Log in</NavLink>
+            <NavLink to='/Login' className=" text-amber-600 text-l underline">Log in</NavLink>
           </div>
         </div>
       </div>

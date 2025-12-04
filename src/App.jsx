@@ -1,36 +1,39 @@
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Home from './pages/Home'
+import Products from "./pages/Product";
+import Contact from "./pages/Contact";
+
+import Footer from "./components/Footer";
 import Signup from "./pages/Signup";
 import Login from "./pages//Login";
 import Forgottenpassword from "./pages//Forgottenpassword";
-
 import Signupotp from "./pages/Signupotp";
-import Slider from "./components/Slider";
-import Products from "./pages/Product";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart";
+import QuickView from "./components/Cards/QuickView";
+import Profile from "./pages/Profile";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Home from "./pages/Home";
 
 function App() {
   return (
     <>
+      <Navbar/>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<About/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/forgottenpassword" element={<Forgottenpassword />} />
-        <Route path="/signupotp" element={<Signupotp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
 
-      {/* <Slider />
-      <Products />
-      <Footer /> */}
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Forgottenpassword" element={<Forgottenpassword />} />
+        <Route path="/Signupotp" element={<Signupotp />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/quickview" element={<QuickView />} />
+      </Routes>
+      <Footer/>
     </>
   );
 }
