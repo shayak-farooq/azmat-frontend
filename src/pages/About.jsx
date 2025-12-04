@@ -8,10 +8,6 @@ import About_Certificate from "../components/Cards/About_Certificate";
 function About() {
   return (
     <>
-<<<<<<< HEAD
-=======
-      <Navbar />
->>>>>>> c50aec245ec182ec3db61a251003ad24177adc1e
       <div className=" w-full flex flex-col justify-center items-center py-5">
         <h2 className="text-5xl font-medium text-center pt-10">
           <u>About us</u>
@@ -152,10 +148,6 @@ function About() {
               the readable content of a page when looking at its layout the
               point of using"
         src="https://qx-honee.myshopify.com/cdn/shop/files/about-us.jpg"/>
-<<<<<<< HEAD
-=======
-      <Footer />
->>>>>>> c50aec245ec182ec3db61a251003ad24177adc1e
     </>
   );
 }
