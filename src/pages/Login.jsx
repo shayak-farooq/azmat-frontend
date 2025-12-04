@@ -1,11 +1,27 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useState } from "react";
 
 export default function Login() {
+  const [data, setData] = useState({email: "", password: ""})
+  function handleChange(e){
+    setData({...data,[e.target.name]:e.target.value})
+  }
+  async function handleSubmit(e){
+    e.preventDefault();
+    const response = await fetch ("http://localhost:5000/api/user/login",{
+      method: 'POST',
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({...data})
+
+    })
+    console.log(response)
+    setData({email: "", password: ""})
+  }
+
   return (
     <>
-    <Navbar/>
     
       <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="bg-brand shadow-xl rounded-xl p-8 w-full max-w-md">
@@ -13,14 +29,14 @@ export default function Login() {
             Login
           </h2>
 
-          <form className="flex flex-col space-y-4">
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             {/* Email */}
             <label className="flex flex-col text-gray-700 text-sm font-medium">
               Email
               <input
-                type="email"
+                type="email"  name="email"
                 className="mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-                placeholder="Enter your email"
+                placeholder="Enter your email" value={data.email} onChange={handleChange}
                 required
               />
             </label>
@@ -29,9 +45,9 @@ export default function Login() {
             <label className="flex flex-col text-gray-700 text-sm font-medium">
               Password
               <input
-                type="password"
+                type="password" name="password" onChange={handleChange}
                 className="mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-                placeholder="Enter your password"
+                placeholder="Enter your password" value={data.password}
                 required
               />
             </label>
