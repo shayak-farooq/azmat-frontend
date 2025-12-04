@@ -3,6 +3,7 @@ import { LiaCcVisa, LiaPaypal, LiaCcMastercard } from "react-icons/lia";
 import { SiAmericanexpress } from "react-icons/si";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Footer() {
     const [toggleSections2, setToggleSections2] = useState(true)
@@ -14,7 +15,9 @@ function Footer() {
                 {/* section-1 */}
                 <div className='flex-1 pt-10 pl-5 sm:pb-3'>
                     <h1>
+                        <NavLink to='/'>
                         <img className='h-12 w-auto object-contain' src={LOGO} alt="" />
+                        </NavLink>
                         <div className='py-5'>
                             <span className='text-zinc-500'>7882 Rd reliance gidc park chock, new york</span>
                         </div>
@@ -30,10 +33,10 @@ function Footer() {
                 <div className="md:flex-1 md:pt-10 md:pl-5 relative">
                     <h1 className='pb-5'>My account</h1>
                     <ul className={`*:text-zinc-500 *:pb-1 md:block ${toggleSections2 ? "hidden" : ""}`}>
-                        <li><a href="">About us</a></li>
-                        <li><a href="">Contact us</a></li>
-                        <li><a href="">Blog </a></li>
-                        <li><a href="">MyCart </a></li>
+                        <li><NavLink to="/about">About us</NavLink></li>
+                        <li><NavLink to="/products">Products</NavLink></li>
+                        <li><NavLink to="/contact">Contact us</NavLink></li>
+                        <li><NavLink to="/cart">MyCart</NavLink></li>
                     </ul>
                     <button onClick={() => { setToggleSections2(!toggleSections2) }} className='md:hidden absolute right-5 top-0'>{toggleSections2 ? "+" : "-"}</button>
                 </div>

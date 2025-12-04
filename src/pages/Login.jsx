@@ -5,8 +5,6 @@ import Footer from "../components/Footer";
 export default function Login() {
   return (
     <>
-    <Navbar/>
-    
       <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="bg-brand shadow-xl rounded-xl p-8 w-full max-w-md">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-6">
@@ -64,7 +62,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <Footer/>
     </>
   );
 }

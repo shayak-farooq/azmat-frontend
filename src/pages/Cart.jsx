@@ -21,7 +21,6 @@ function Cart() {
   // }
   return (
     <>
-    <Navbar/>
       <div className="lg:flex flex-col items-center justify-center pt-32">
         {/* Product info */}
         <div className="bg-brand rounded-xl mx-10 ">
@@ -91,7 +90,6 @@ function Cart() {
           </div>
         </div>
       </div>
-      <Footer/>
     </>
   )
 }

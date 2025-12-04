@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 function Profile() {
   return (
     <>
-      <Navbar />
         <section className="pt-24 flex flex-col justify-center items-center">
           <div className="mb-12">
             <h6 className="text-amber-600 text-center text-xl pb-4">welcome</h6>
@@ -40,7 +39,6 @@ function Profile() {
             </div>
           </div>
         </section>
-        <Footer/>
     </>
   );
 }
