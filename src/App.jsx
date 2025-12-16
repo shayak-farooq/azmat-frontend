@@ -34,6 +34,7 @@ function App() {
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/verifysignup" element={<Signupotp/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgottenpassword" element={<Forgottenpassword />} />
         <Route path="/signupotp" element={<Signupotp />} />

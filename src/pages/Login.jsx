@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Login() {
+  const [error,setError] = useState('')
   const [data, setData] = useState({ email: "", password: "" });
+  const navigate = useNavigate()
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
@@ -13,8 +15,13 @@ export default function Login() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...data }),
     });
-    console.log(response);
-    setData({ email: "", password: "" });
+    if(response.status == 401){
+      setError("invalid email or password")
+    }
+    if(response.status == 200){
+      navigate('/profile')
+    }
+    setData({ email: "", password: ""});
   }
   return (
     <>
@@ -37,7 +44,7 @@ export default function Login() {
                 required
               />
             </label>
-
+            
             {/* Password */}
             <label className="flex flex-col text-gray-700 text-sm font-medium">
               Password
@@ -50,7 +57,7 @@ export default function Login() {
                 required
               />
             </label>
-
+            {error? <span className="text-red-400 text-xs">*{error}</span> : ""}
             {/* Submit Button */}
             <button
               type="submit"

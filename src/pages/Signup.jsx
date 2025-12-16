@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const [data, setData] = useState({ username: "", email: "", password: "" });
+  const [data, setData] = useState({ name: "", email: "", password: "" });
+  const navigate = useNavigate()
+
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
@@ -14,8 +16,10 @@ function Signup() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...data }),
     });
-    console.log(response)
-    setData({ username: "", email: "", password: ""});
+    if(response.status == 200){
+      navigate(`/verifysignup?email=${data.email}&name=${data.name}`)
+    }
+    setData({ name: "", email: "", password: ""});
   }
   return (
     <>
@@ -28,13 +32,13 @@ function Signup() {
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             {/* Username */}
             <label className="flex flex-col text-gray-700 text-sm font-medium">
-              Username
+              Full Name
               <input
                 type="text"
-                name="username"
+                name="name"
                 onChange={handleChange}
                 className="mt-1 border bg-white border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-                placeholder="Enter your username"
+                placeholder="Enter your Full Name"
                 required
               />
             </label>
