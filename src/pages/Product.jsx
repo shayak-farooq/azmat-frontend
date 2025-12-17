@@ -1,6 +1,4 @@
 import SingleProduct from "../components/Cards/SingleProduct";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { useState } from "react";
 import Product_catagories from "../components/Cards/Product_catagories";
 import Product_filters from "../components/Cards/Product_filters";
@@ -9,7 +7,7 @@ function Products() {
   const [islistView, setListView] = useState(false);
   return (
     <>
-      <section className="bg-brand flex lg:px-32 lg:py-24 md:p-10">
+      <section className="relative bg-brand flex lg:px-32 lg:py-24 md:p-10">
         {/* left section --> filters etc */}
         <section className="mx-3 w-1/5">
           <Product_catagories/>
@@ -27,12 +25,6 @@ function Products() {
             </button>
           </div>
           <div className="flex flex-wrap ">
-            <SingleProduct />
-            <SingleProduct />
-            <SingleProduct />
-            <SingleProduct />
-            <SingleProduct />
-            <SingleProduct />
             <SingleProduct />
           </div>
           {/* <div className="m-2 flex">

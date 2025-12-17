@@ -2,6 +2,7 @@ import productImage from "../../assets/Images/product.jpeg";
 import { useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import QuickView from "./QuickView";
 
 function SingleProduct() {
   const [view, setView] = useState({
@@ -9,8 +10,10 @@ function SingleProduct() {
     mobileView: false,
     quickView: false,
   });
+  const [hidden,setHidden]= useState(true)
   return (
     <>
+    <QuickView hidden={hidden} setHidden={setHidden}/>
       <div className="w-1/4 mx-4 my-3 group relative">
         {/* Product image */}
         <div className="">
@@ -37,7 +40,8 @@ function SingleProduct() {
               <span className="lg:block hidden">Add to cart</span>
               <span className="lg:hidden"><MdOutlineShoppingCart/></span>
             </button>
-            <button className="bg-brand bg-white py-3 px-4 rounded-xl transition-all duration-300 ease-in-out hover:bg-amber-600 hover:text-white"><IoEyeOutline/></button>
+            <button onClick={()=>setHidden(!hidden)} className="bg-brand bg-white py-3 px-4 rounded-xl transition-all duration-300 ease-in-out hover:bg-amber-600 hover:text-white"><IoEyeOutline/></button>
+            
           </div>
         </div>
       </div>
