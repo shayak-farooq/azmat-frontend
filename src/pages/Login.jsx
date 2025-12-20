@@ -1,13 +1,20 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Login() {
   const [error,setError] = useState('')
   const [data, setData] = useState({ email: "", password: "" });
   const navigate = useNavigate()
+
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
+  useEffect(()=>{
+    const bearer = localStorage.getItem('bearer')
+    if(bearer){
+      navigate('/profile')
+    }
+  },[])
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await fetch("http://localhost:3000/api/user/login", {
@@ -15,13 +22,20 @@ export default function Login() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...data }),
     });
-    if(response.status == 401){
+    const result = await response.json()
+    
+    if(response.status == 401 ){
       setError("invalid email or password")
     }
     if(response.status == 200){
+      localStorage.setItem("bearer",result.token)
+      console.log(result.token)
+      if(result.role == 'ADMIN') {
+        return navigate("/admin")
+      }
       navigate('/profile')
+      setData({ email: "", password: ""});
     }
-    setData({ email: "", password: ""});
   }
   return (
     <>
@@ -89,3 +103,5 @@ export default function Login() {
     </>
   );
 }
+
+

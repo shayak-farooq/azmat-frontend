@@ -1,10 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillDashboard } from "react-icons/ai";
 import { IoPricetagsSharp } from "react-icons/io5";
 import { TbBrandAppgallery } from "react-icons/tb";
 
 function AdminNavbar() {
+  const Navigate = useNavigate()
+  function handleLogout(){
+    localStorage.removeItem('bearer')
+    Navigate('/')
+  }
   return (
     <>
       <nav className="w-1/5 h-screen p-2 bg-gray-200">
@@ -33,6 +38,9 @@ function AdminNavbar() {
               </li>
             </NavLink>
           </ul>
+        </div>
+        <div className="flex item-center text-xl border-b border-zinc-300 py-3 gap-2">
+          <button className="hover:cursor-pointer" onClick={()=>{handleLogout()}} >Logout</button>
         </div>
       </nav>
     </>

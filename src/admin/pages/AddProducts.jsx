@@ -1,9 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { GrGallery } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
+
 function AddProducts() {
+  const [err,setErr] = useState('')
+  const navigate = useNavigate()
+  //image ispending
+  const [data,setData] = useState({
+    title:'',
+    batchNo:'',
+    desc:'',
+    price:'',
+    inStock:'',
+  })
+  function handleChange(e){
+    setData({ ...data, [e.target.name]: e.target.value })
+  }
+  async function handleSubmit(e){
+    e.preventDefault()
+    console.log(data);
+    const token = localStorage.getItem("bearer")
+    const response = await fetch('http://localhost:3000/api/products/addproduct',{
+      method:"POST",
+      headers:{'Authorization':`Bearer ${token}`,
+      "Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    })
+    const result = await response.json()
+    console.log(result);
+    if(response.status == 201){
+      navigate('/admin/products')
+    }
+    if(response.status !== 201){
+      console.log(result.err);
+      setErr(result.err)
+    }
+  }
+  function clearData(){
+    setData({
+    title:'',
+    batchNo:'',
+    desc:'',
+    price:'',
+    inStock:'',
+  })
+  }
   return (
     <>
       <div className="w-screen bg-gray-300 relative">
+        <form onSubmit={handleSubmit}>
         <h4 className="text-xl font-bold pt-8 pl-8">Add product</h4>
         <div className="flex m-5 px-3 gap-2 ">
           {/* Leftside */}
@@ -13,21 +58,24 @@ function AddProducts() {
               <h4>Basic Information</h4>
               <div>
                 <div className="flex flex-col">
-                  <label htmlFor="name">Product name</label>
+                  <label htmlFor="title">Product name</label>
                   <input
                     className="bg-gray-100 rounded-xl p-2 "
                     type="text"
-                    name="name"
-                    id=" "
+                    name="title"
+                    id="title"
+                    value={data.title}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label htmlFor="batch">Batch Number</label>
+                  <label htmlFor="batchNo">Batch Number</label>
                   <input
                     className="bg-gray-100 rounded-xl p-2 "
                     type="text"
-                    name="batch"
-                    id=" "
+                    name="batchNo"
+                    value={data.batchNo}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col">
@@ -37,7 +85,8 @@ function AddProducts() {
                     rows={5}
                     type="text"
                     name="desc"
-                    id=" "
+                    value={data.desc}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -48,15 +97,16 @@ function AddProducts() {
               <div className="flex gap-2">
                 <div className="flex-1">
                   <div className="flex flex-col">
-                    <label htmlFor="name">Price</label>
+                    <label htmlFor="price">Price</label>
                     <input
                       className="bg-gray-100 rounded-xl p-2 "
-                      type="text"
-                      name="name"
-                      id=" "
+                      type="number"
+                      name="price"
+                      value={data.price}
+                    onChange={handleChange}
                     />
                   </div>
-                  <div className="flex flex-col">
+                  {/* <div className="flex flex-col">
                     <label htmlFor="name">Cost Price</label>
                     <input
                       className="bg-gray-100 rounded-xl p-2 "
@@ -64,8 +114,8 @@ function AddProducts() {
                       name="name"
                       id=" "
                     />
-                  </div>
-                </div>
+                  </div> */}
+                {/* </div>
                 <div className="flex-1">
                   <div className="flex flex-col">
                     <label htmlFor="name">Retail Price</label>
@@ -75,8 +125,8 @@ function AddProducts() {
                       name="name"
                       id=" "
                     />
-                  </div>
-                  <div className="flex flex-col">
+                  </div> */}
+                  {/* <div className="flex flex-col">
                     <label htmlFor="name">Sale Price</label>
                     <input
                       className="bg-gray-100 rounded-xl p-2 "
@@ -84,10 +134,15 @@ function AddProducts() {
                       name="name"
                       id=" "
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
+            {err?<div className="flex flex-col">
+              <div className="bg-white rounded-2xl p-4">
+              <h1 className="text-red-400 text-xs">{err}</h1>
+              </div>
+            </div> :""}
           </div>
           {/* right side */}
           <div className="flex flex-col flex-1 gap-2 ">
@@ -114,18 +169,31 @@ function AddProducts() {
             </div>
             <div className="bg-white rounded-2xl p-4">
               <h4>Attribute</h4>
+              <div>
+                <div className="flex flex-col">
+                  <label htmlFor="inStock">Available in stock</label>
+                  <input
+                    className="bg-gray-100 rounded-xl p-2 "
+                    type="number"
+                    name="inStock"
+                    value={data.inStock}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="flex justify-end w-full bg-white absolute bottom-0 p-5">
             <div className="text-red-600 border-3 rounded-xl p-2 mr-3">
-            <button className="">Discord</button>
+            <button type="reset" onClick={()=>{clearData()}} className="">Discord</button>
             </div>
-            <button className="bg-blue-700 text-white border-3 border-blue-700 rounded-xl p-2 mr-3 ">Create</button>
+            <button type="submit" onClick={()=>{handleSubmit}} className="bg-blue-700 text-white border-3 border-blue-700 rounded-xl p-2 mr-3 ">Create</button>
         </div>
+        </form>
       </div>
     </>
   );
 }
 
-export default AddProducts;
+export default React.memo( AddProducts);

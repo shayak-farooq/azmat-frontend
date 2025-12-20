@@ -25,13 +25,14 @@ function Otp() {
         body: JSON.stringify({ ...data }),
       }
     );
-    const result = response.json();
+    const result = await response.json();
     console.log(result);
     if (response.status == 409) {
       console.log("Email already registered");
     }
     if (response.status == 200) {
-      navigate(`/login`);
+       localStorage.setItem("bearer",result.token)
+        navigate(`/login`);
     }
   }
   return (
