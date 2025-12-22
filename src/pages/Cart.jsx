@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ProductImage from '../assets/Images/product.jpeg'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -19,6 +19,27 @@ function Cart() {
   // const handleChange = (e)=>{
   //   setShippingAddress({...shippingAddress,[e.target.name]:e.target.value})
   // }
+  const [products,setProducts] = useState()
+  useEffect(()=>{
+    const token = localStorage.getItem('bearer')
+    fetch('http://localhost:3000/api/cart/getcart',{
+      method:'GET',
+      headers:{
+        "authorization":`bearer ${token}`,
+        'content-type':'application/json'
+      }
+    })
+    .then(res=>{
+        console.log(res);
+        return res.json()
+      })
+      .then(data =>{
+        setProducts(data.products)
+        console.log(data.products);
+        console.log(data.products[0].productid);
+        console.log(data.products[0].productid.title);
+      })
+  },[])
   return (
     <>
       <div className="lg:flex flex-col items-center justify-center pt-32">

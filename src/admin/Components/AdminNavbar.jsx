@@ -40,6 +40,9 @@ function AdminNavbar() {
           </ul>
         </div>
         <div className="flex item-center text-xl border-b border-zinc-300 py-3 gap-2">
+          <button className="hover:cursor-pointer" onClick={()=>{Navigate('/')}} >Home Page</button>
+        </div>
+        <div className="flex item-center text-xl border-b border-zinc-300 py-3 gap-2">
           <button className="hover:cursor-pointer" onClick={()=>{handleLogout()}} >Logout</button>
         </div>
       </nav>

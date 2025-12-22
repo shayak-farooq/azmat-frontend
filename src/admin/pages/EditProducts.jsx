@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { GrGallery } from "react-icons/gr";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditProducts() {
   const [err,setErr] = useState('')
   const {id} = useParams()
+  const navigate = useNavigate()
     //image ispending
     const [data,setData] = useState({
       title:'',
@@ -41,6 +42,9 @@ function EditProducts() {
       })
       const result = await response.json()
       console.log(result);
+      if(response.status == 200){
+        navigate('/admin/products')
+      }
       if(response.status != 200){
         console.log(result.err);
         setErr(result.err)
@@ -186,7 +190,7 @@ function EditProducts() {
             </div>
           </div>
           <div className="flex justify-end w-full bg-white absolute bottom-0 p-5">
-              <button type="submit" onClick={()=>{handleSubmit}} className="bg-blue-700 text-white border-3 border-blue-700 rounded-xl p-2 mr-3 ">Create</button>
+              <button type="submit" onClick={()=>{handleSubmit}} className="bg-blue-700 text-white border-3 border-blue-700 rounded-xl p-2 mr-3 ">Update</button>
           </div>
           </form>
         </div>

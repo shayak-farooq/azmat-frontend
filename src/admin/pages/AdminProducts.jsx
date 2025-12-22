@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const AdminProducts = () => {
-  const [products, setProducts] = useState();
-
+  const [products, setProducts] = useState([]);
+  const [index,setIndex] = useState(0)
+  const [page, setPage] = useState(1)
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("bearer");
@@ -41,7 +42,6 @@ const AdminProducts = () => {
       })
       console.log(response);
       // TODO: what to do after delete
-      
       // const result = await response.json()
   }
   return (
@@ -73,9 +73,9 @@ const AdminProducts = () => {
                   <th></th>
                 </tr>
               </thead>
-              {products != undefined ? (
+              {products  ? (
                 <tbody>
-                  {products.map((item, index) => (
+                  {products.slice(index, index + 10).map((item, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{item.title}</td>
@@ -98,6 +98,11 @@ const AdminProducts = () => {
                 </tbody>
               )}
             </table>
+          </div>
+          <div className="flex items-center justify-center">
+            <button className="font-black bg-black text-white p-2 rounded m-2 hover:cursor-pointer disabled:bg-gray-500" onClick={()=> {setIndex(index-10);setPage(page-1)}} disabled={index === 0}>&lt;</button>
+            <div>{page}</div>
+            <button className="font-black bg-black text-white p-2 rounded m-2 hover:cursor-pointer disabled:bg-gray-500" onClick={()=> {setIndex(index+10);setPage(page+1)}} disabled={index +10 >= products.length}>&gt;</button>
           </div>
         </div>
       </div>
