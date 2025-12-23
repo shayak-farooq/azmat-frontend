@@ -41,6 +41,11 @@ const AdminProducts = () => {
         },
       })
       console.log(response);
+      if(response.status == 200){
+        setProducts(prev =>(
+        prev.filter(product => product._id !== productid )
+      ))
+      }
       // TODO: what to do after delete
       // const result = await response.json()
   }
