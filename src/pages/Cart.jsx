@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductImage from "../assets/Images/product.jpeg";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   // const [shippingAddress ,setShippingAddress] = useState({
@@ -18,7 +19,9 @@ function Cart() {
   //   setShippingAddress({...shippingAddress,[e.target.name]:e.target.value})
   // }
   const [products, setProducts] = useState([]);
-  const [state,setState] = useState(0)
+  const [state, setState] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("bearer");
     fetch("http://localhost:3000/api/cart/getcart", {
@@ -30,14 +33,24 @@ function Cart() {
     })
       .then((res) => {
         console.log(res);
+        if (res.status == 401) {
+          navigate("/login");
+        }
         return res.json();
       })
       .then((data) => {
         setProducts(data.products);
         console.log("products", data.products);
+        calculateTotalAmount(data.products);
       });
   }, [state]);
-
+  function calculateTotalAmount(products) {
+    let total = 0;
+    products.forEach((element) => {
+      total += element.productdetails.price * element.quantity;
+    });
+    setTotalAmount(total);
+  }
   async function handleRemove(productid) {
     const token = localStorage.getItem("bearer");
     const response = await fetch(
@@ -51,9 +64,10 @@ function Cart() {
       }
     );
     if (response.status == 200) {
-      setProducts((prev) =>
-        prev.filter((product) => product.productdetails._id !== productid)
-      );
+      setState(state + 1)
+      // setProducts((prev) =>
+      //   prev.filter((product) => product.productdetails._id !== productid)
+      // );
     }
   }
   async function handleQuantity(quantity, productid) {
@@ -76,10 +90,10 @@ function Cart() {
         body: JSON.stringify({ quantity }),
       }
     );
-    const result = response.json()
+    const result = response.json();
     console.log(result);
-    if(response.status == 200){
-      setState(state+1)
+    if (response.status == 200) {
+      setState(state + 1);
     }
   }
   return (
@@ -224,7 +238,7 @@ function Cart() {
 
         <div className="flex flex-wrap my-4 justify-center mx-10">
           {/* special instructions */}
-          <div className="bg-brand flex flex-col px-10 pb-5 rounded-xl w-full mb-4">
+          {/* <div className="bg-brand flex flex-col px-10 pb-5 rounded-xl w-full mb-4">
             <h6 className="m-3 pb-2 border-b border-zinc-300">
               Special instructions for seller
             </h6>
@@ -234,18 +248,18 @@ function Cart() {
               className="bg-white outline-none rounded"
               rows={4}
             ></textarea>
-          </div>
+          </div> */}
           {/* checkout btn */}
           <div className="bg-brand flex flex-col px-10 pb-5 rounded-xl w-full ">
             <h6 className="m-3 pb-2 border-b border-zinc-300">Total amount</h6>
             <span className="pb-4 text-zinc-500">
-              Taxes and shipping calculated at checkout
+              shipping is calculated at checkout
             </span>
             <div className="flex justify-between pb-3">
               <p>Total Amount</p>
-              <span>2000</span>
+              <span>{totalAmount}</span>
             </div>
-            <button className="hover:bg-amber-400 bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors">
+            <button onClick={()=>{navigate('/checkout')}} className="hover:bg-amber-400 bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors">
               Checkout
             </button>
           </div>

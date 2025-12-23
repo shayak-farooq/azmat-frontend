@@ -36,6 +36,12 @@ function SingleProduct(props) {
         setItem((prev) => ({ ...prev, state: false }));
       }, 4000);
     }
+    if(response.status == 401){
+      setItem({ state: true, text: "Login First" });
+      setTimeout(() => {
+        setItem((prev) => ({ ...prev, state: false }));
+      }, 4000);
+    }
     const result = await response.json();
     console.log(result);
   }

@@ -22,6 +22,7 @@ import AdminProducts from "./admin/pages/AdminProducts";
 import AdminOrders from "./admin/pages/AdminOrders";
 import AddProducts from "./admin/pages/AddProducts";
 import EditProducts from './admin/pages/EditProducts'
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
         <Route path="/quickview" element={<QuickView />} />
       </Route>
 
+      <Route path="/checkout" element={<Checkout />} />
+      
       {/* ADMIN SIDE ROUTES (NO Navbar & Footer) */}
       <Route element={<AdminLayout />}>
         <Route path="/admin" element={<AdminDashboard />} />
