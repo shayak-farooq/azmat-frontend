@@ -23,6 +23,7 @@ import AdminOrders from "./admin/pages/AdminOrders";
 import AddProducts from "./admin/pages/AddProducts";
 import EditProducts from './admin/pages/EditProducts'
 import Checkout from "./pages/Checkout";
+import Addresses from "./pages/Addresses";
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/profile" element={<Profile />} />
+        <Route path="/addresses" element={<Addresses/>}/>
+        
         <Route path="/signup" element={<Signup />} />
         <Route path="/verifysignup" element={<Signupotp/>} />
         <Route path="/login" element={<Login />} />

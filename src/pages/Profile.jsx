@@ -70,9 +70,11 @@ function Profile() {
             {/* Links */}
             <div className="mt-2.5">
               {/* Todo Add logic */}
-              <p className="mt-2.5 hover:cursor-pointer">
-                View Addresses <span>(1)</span>
-              </p>
+              <div>
+              <button onClick={()=>{Navigate('/addresses')}} className="mt-2.5 hover:cursor-pointer">
+                View Addresses <span>({userData.address.length})</span>
+              </button>
+              </div>
               <button
                 onClick={() => {
                   handleLogout();

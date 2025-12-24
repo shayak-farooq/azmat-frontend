@@ -58,8 +58,8 @@ function Checkout() {
               <div className=" border-2 px-4 py-2 my-2">jdoijwedjowdo</div>
               <div className=" border-2 px-4 py-2 my-2">jdoijwedjowdo</div>
               <div className=" border-2 px-4 py-2 my-2">jdoijwedjowdo</div>
-              <NavLink className="text-blue-500 my-2">
-                <u>+ Add Address</u>
+              <NavLink to='/addresses' className="text-blue-500 my-2">
+                <span className="underline">+ Add Address</span>
               </NavLink>
             </div>
             <div>
