@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 function Checkout() {
   const [products, setProducts] = useState([]);
+  const [addresses, setAddresses] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
@@ -23,8 +24,11 @@ function Checkout() {
         return res.json();
       })
       .then((data) => {
+        console.log('backend response',data);
         setProducts(data.products);
         console.log("products", data.products);
+        setAddresses(data.addresses)
+        console.log("Adresses", data.addresses);
         calculateTotalAmount(data.products);
       });
   }, []);
@@ -55,9 +59,16 @@ function Checkout() {
           <div className=" w-2/3 px-8 ">
             <div className="">
               <h3 className="font-semibold text-l my-2">Address</h3>
-              <div className=" border-2 px-4 py-2 my-2">jdoijwedjowdo</div>
-              <div className=" border-2 px-4 py-2 my-2">jdoijwedjowdo</div>
-              <div className=" border-2 px-4 py-2 my-2">jdoijwedjowdo</div>
+              {addresses.map(item =>(
+                <div key={item._id} className="border border-gray-300 rounded px-4 py-2 my-2">
+                  <div className="flex ">
+                  <div className="font-medium">{item.area} </div> <div>, {item.city}</div>
+                  </div>
+                  <div className="flex text-xs">
+                  <div>{item.state} </div> <div>, {item.pincode}</div>
+                  </div>
+                </div>
+              ))}
               <NavLink to='/addresses' className="text-blue-500 my-2">
                 <span className="underline">+ Add Address</span>
               </NavLink>
@@ -139,7 +150,7 @@ function Checkout() {
               <div className="overflow-auto">
                 {/* <Checkout_Card /> */}
                 {products.map((item) => (
-                  <div key={item.productdetails.id} className="flex h-20 justify-center items-center">
+                  <div key={item.productdetails._id} className="flex h-20 justify-center items-center">
                     <div className="w-2/8 flex justify-center items-center h-[90%] ">
                       <div className="h-[90%] w-4/5 flex items-center justify-center ">
                         <img

@@ -35,11 +35,10 @@ function Addresses() {
   }, []);
 
   /* ================= HANDLERS ================= */
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>  setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const openAddForm = () => {
-    setIsFormOpen(true);
+    setIsFormOpen(!isFormOpen);
     setEditingId(null);
     setFormData(initialFormData);
   };
@@ -90,11 +89,15 @@ function Addresses() {
 
   const handleEdit = (id) => {
     const address = savedData.address.find(item => item._id === id);
-    setFormData(address);
+    const phone = savedData.phone
+    console.log(phone);
+    setFormData({...address,phone:phone});
     setEditingId(id);
-    setIsFormOpen(true);
+    setIsFormOpen(!isFormOpen);
+    
   };
-
+console.log(savedData);
+console.log(savedData.phone);
   /* ================= RENDER ================= */
   return (
     <section className="pt-24 flex flex-col items-center">

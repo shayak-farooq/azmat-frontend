@@ -19,7 +19,8 @@ function Products() {
       console.log(data.products);
       setProducts(data.products)
     })
-  },[])
+  },[]);
+
   return (
     <>
       <section className="relative bg-brand flex lg:px-32 lg:py-24 md:p-10">
@@ -47,6 +48,7 @@ function Products() {
                 price={item.price} 
                 rating ={item.Rating}
                 desc={item.desc}
+                images ={item.productImages}
                 />
 
               )):(<div>no data available</div>)}

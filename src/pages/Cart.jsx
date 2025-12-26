@@ -70,11 +70,11 @@ function Cart() {
       // );
     }
   }
-  async function handleQuantity(quantity, productid) {
-    if (quantity == 1) {
+  async function handleQuantity(value,quantity, productid) {
+    if (value == 1) {
       quantity++;
     }
-    if (quantity == -1) {
+    if (value == -1) {
       quantity--;
     }
     console.log(quantity);
@@ -190,7 +190,7 @@ function Cart() {
                             <button
                               className="px-3 py-2"
                               onClick={() => {
-                                handleQuantity(-1, item.productdetails._id);
+                                handleQuantity(-1,item.quantity, item.productdetails._id);
                               }}
                               disabled={item.quantity == 1}
                             >
@@ -202,7 +202,7 @@ function Cart() {
                             <button
                               className="px-3 py-2"
                               onClick={() => {
-                                handleQuantity(1, item.productdetails._id);
+                                handleQuantity(1,item.quantity, item.productdetails._id);
                               }}
                               disabled={
                                 item.quantity == item.productdetails.inStock

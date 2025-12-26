@@ -45,6 +45,7 @@ function SingleProduct(props) {
     const result = await response.json();
     console.log(result);
   }
+  console.log("images",props.images[0])
   return (
     <>
       <QuickView hidden={hidden} setHidden={setHidden} />
@@ -61,7 +62,7 @@ function SingleProduct(props) {
           )}
           {/* <img src={productImage} alt="" className="" /> */}
           <img
-            src="https://qx-honee.myshopify.com/cdn/shop/files/honey-pro-10.jpg?crop=center&height=775&v=1726038686&width=645"
+            src={`http://localhost:3000/images/${props.images[0]}`}
             alt="product image"
             className="rounded-xl border border-zinc-300"
           />
