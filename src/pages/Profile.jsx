@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import OrdersCard from "../components/Cards/OrdersCard";
 
 function Profile() {
   // if backend is not running handle that
@@ -16,33 +17,24 @@ function Profile() {
       Navigate("/login");
       return;
     }
-
     fetch("http://localhost:3000/api/user/profile", {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
-        console.log("Backend response:", response);
-        console.log(response.status);
-        
-        return response.json();
+      .then((response) => response.json())
+      .then((result) => {
+        setUserData(result);
       })
-      .then((data) => {
-        console.log("backend data:", data);
-        setUserData(data);
-      })
-      .catch((err) => {
-        console.error("error",err);
-        Navigate("/login");
-      });
+      .catch((err) => console.error(err));
   }, []);
   function handleLogout() {
     localStorage.removeItem("bearer");
     return Navigate("/login");
   }
+
   return (
     <>
       <section className="pt-24 flex flex-col justify-center items-center">
@@ -71,9 +63,24 @@ function Profile() {
             <div className="mt-2.5">
               {/* Todo Add logic */}
               <div>
-              <button onClick={()=>{Navigate('/addresses')}} className="mt-2.5 hover:cursor-pointer">
-                View Addresses <span>({userData.address.length})</span>
-              </button>
+                <button
+                  onClick={() => {
+                    Navigate("/addresses");
+                  }}
+                  className="mt-2.5 hover:cursor-pointer"
+                >
+                  View Addresses <span>({userData.address.length})</span>
+                </button>
+              </div>
+              <div>
+                <button
+                  className="mt-2.5 hover:cursor-pointer"
+                  onClick={() => {
+                    Navigate("/orders");
+                  }}
+                >
+                  Orders
+                </button>
               </div>
               <button
                 onClick={() => {
@@ -92,14 +99,6 @@ function Profile() {
               <p className="mt-2.5">{userData.name}</p>
               <p className="mt-2.5">{userData.email}</p>
             </div>
-          </div>
-        </div>
-        <div className="w-[80%] mt-8">
-          <h4 className="mb-1.5 text-xl font-normal">Order history</h4>
-          <div className="p-8 flex border border-dotted border-zinc-300">
-            <span className="text-red-500">
-              You haven't placed any orders yet.{" "}
-            </span>
           </div>
         </div>
       </section>

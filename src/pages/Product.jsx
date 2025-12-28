@@ -16,7 +16,7 @@ function Products() {
       return response.json()
     })
     .then(data =>{
-      console.log(data.products);
+      console.log('products',data.products);
       setProducts(data.products)
     })
   },[]);
@@ -44,6 +44,7 @@ function Products() {
               {products != undefined ? products.map(item =>(
                 <SingleProduct key={item._id}
                 productid={item._id}
+                instock = {item.inStock}
                 title={item.title}
                 price={item.price} 
                 rating ={item.Rating}

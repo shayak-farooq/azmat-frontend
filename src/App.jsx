@@ -24,6 +24,7 @@ import AddProducts from "./admin/pages/AddProducts";
 import EditProducts from './admin/pages/EditProducts'
 import Checkout from "./pages/Checkout";
 import Addresses from "./pages/Addresses";
+import Orders from "./pages/Orders";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/addresses" element={<Addresses/>}/>
+        <Route path="/Orders" element={<Orders/>}/>
         
         <Route path="/signup" element={<Signup />} />
         <Route path="/verifysignup" element={<Signupotp/>} />

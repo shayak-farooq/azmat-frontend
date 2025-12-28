@@ -91,13 +91,11 @@ function Addresses() {
     const address = savedData.address.find(item => item._id === id);
     const phone = savedData.phone
     console.log(phone);
-    setFormData({...address,phone:phone});
+    setFormData(savedData.address.find(item => item._id === id));
     setEditingId(id);
     setIsFormOpen(!isFormOpen);
     
   };
-console.log(savedData);
-console.log(savedData.phone);
   /* ================= RENDER ================= */
   return (
     <section className="pt-24 flex flex-col items-center">
@@ -121,7 +119,7 @@ console.log(savedData.phone);
               className="flex justify-between items-center p-8 my-4 border border-dotted border-zinc-300"
             >
               <div>
-                <p>{savedData.name}</p>
+                <p className="capitalize">{savedData.name}</p>
                 <p>{item.area}, {item.city}</p>
                 <p>{item.state}, {item.country}, {item.pincode}</p>
               </div>

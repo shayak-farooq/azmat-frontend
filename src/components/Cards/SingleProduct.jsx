@@ -11,6 +11,15 @@ function SingleProduct(props) {
     text: "",
   });
   async function addToCart(productid) {
+    console.log("stock", props.instock);
+    if (props.instock == 0) {
+      console.log("out of stock");
+      setItem({ state: true, text: "item is currently out of stock" });
+      setTimeout(() => {
+        setItem((prev) => ({ ...prev, state: false }));
+      }, 4000);
+      return;
+    }
     const token = localStorage.getItem("bearer");
     console.log(token);
     console.log(productid);
@@ -22,7 +31,7 @@ function SingleProduct(props) {
       },
       body: JSON.stringify({ productid }),
     });
-    console.log(response);
+    // console.log(response);
     //TODO after response ??
     if (response.status == 200) {
       setItem({ state: true, text: "item already in cart" });
@@ -36,16 +45,16 @@ function SingleProduct(props) {
         setItem((prev) => ({ ...prev, state: false }));
       }, 4000);
     }
-    if(response.status == 401){
+    if (response.status == 401) {
       setItem({ state: true, text: "Login First" });
       setTimeout(() => {
         setItem((prev) => ({ ...prev, state: false }));
       }, 4000);
     }
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
   }
-  console.log("images",props.images[0])
+  // console.log("images",props.images[0])
   return (
     <>
       <QuickView hidden={hidden} setHidden={setHidden} />
