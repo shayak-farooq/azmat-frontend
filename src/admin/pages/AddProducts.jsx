@@ -24,16 +24,14 @@ function AddProducts() {
     setImages(newImages);
     setPreviews(newPreviews);
   }
-  useEffect(() => {
-    console.log("images", images);
-    console.log("previews", previews);
-  }, [images]);
+
   const [data, setData] = useState({
     title: "",
     batchNo: "",
     desc: "",
     price: "",
     inStock: "",
+    discount:''
   });
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -49,6 +47,7 @@ function AddProducts() {
     formData.append("desc", data.desc);
     formData.append("price", data.price);
     formData.append("inStock", data.inStock);
+    formData.append("discount", data.discount);
 
     images.forEach((img) => {
       formData.append("Product_Images", img);
@@ -81,12 +80,13 @@ function AddProducts() {
       desc: "",
       price: "",
       inStock: "",
+      discount:''
     });
   }
   return (
     <>
       <div className="w-full bg-gray-300 ">
-        <form onSubmit={handleSubmit} enctype="multipart/form-data">
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <h4 className="text-xl font-bold pt-8 pl-8">Add product</h4>
           <div className="flex m-5 px-3 gap-2 ">
             {/* Leftside */}
@@ -143,6 +143,14 @@ function AddProducts() {
                         value={data.price}
                         onChange={handleChange}
                       />
+                      <label htmlFor="price">Discount <p className="text-xs">Don't add % add number only</p> </label>
+                      <input
+                        className="bg-gray-100 rounded-xl p-2 "
+                        type="number"
+                        name="discount"
+                        value={data.discount}
+                        onChange={handleChange}
+                      />
                     </div>
                     {/* <div className="flex flex-col">
                     <label htmlFor="name">Cost Price</label>
@@ -176,15 +184,13 @@ function AddProducts() {
                   </div>
                 </div>
               </div>
-              {err ? (
+              {err && (
                 <div className="flex flex-col">
                   <div className="bg-white rounded-2xl p-4">
                     <h1 className="text-red-400 text-xs">{err}</h1>
                   </div>
                 </div>
-              ) : (
-                ""
-              )}
+              ) }
             </div>
             {/* right side */}
             <div className="flex flex-col flex-1 gap-2 ">

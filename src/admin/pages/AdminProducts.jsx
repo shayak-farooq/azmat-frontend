@@ -70,27 +70,37 @@ const AdminProducts = () => {
               <thead className="text-left border-b border-zinc-300">
                 <tr className="*:p-2">
                   <th>S.no</th>
-                  <th>Products</th>
-                  <th>Batch No</th>
-                  <th>price</th>
-                  <th>Stock</th>
-                  <th>Rating</th>
+                  <th>Images</th>
+                  <th>Product Name</th>
+                  <th>Selling price</th>
+                  <th>discount</th>
+                  <th>In Stock</th>
                   <th></th>
                 </tr>
               </thead>
               {products  ? (
                 <tbody>
                   {products.slice(index, index + 10).map((item, index) => (
-                    <tr key={index}>
+                    <tr className="*:p-2" key={index} >
                       <td>{index + 1}</td>
-                      <td>{item.title}</td>
-                      <td>{item.batchNo}</td>
+                      <td className="w-2">
+                        <img src={`http://localhost:3000/images/${item.productImages[0]}`} alt="" />
+                      </td>
+                      <td>
+                        <p>
+                        {item.title}
+                        </p>
+                        <p className="text-xs text-zinc-600">
+                          {item.desc}
+                        </p>
+
+                      </td>
                       <td>{item.price}</td>
+                      <td>{item.discount} %</td>
                       <td>{item.inStock}</td>
-                      <td>{item.Rating}</td>
                       <td>
                         <button className="mr-2 hover:cursor-pointer" onClick={()=>{handleEdit(item._id)}}>Edit</button>
-                        <button className="hover:cursor-pointer" onClick={()=>{handleDelete(item._id)}}>delete</button>
+                        {/* <button className="hover:cursor-pointer" onClick={()=>{handleDelete(item._id)}}>delete</button> */}
                       </td>
                     </tr>
                   ))}

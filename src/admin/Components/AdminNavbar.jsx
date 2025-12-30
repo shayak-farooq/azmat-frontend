@@ -14,7 +14,7 @@ function AdminNavbar() {
     <>
       <nav className="w-1/5 h-screen p-2 bg-gray-200">
         <div className="flex justify-between">
-        <h6 className="text-2xl">Azmat</h6>
+        <h6 className="text-2xl">Azmat The Brand</h6>
         <button className='lg:hidden ml-3' onClick={()=>{setSwipeSlider(!swipeSlider)}}><GiHamburgerMenu /></button>
         </div>
         <div>
