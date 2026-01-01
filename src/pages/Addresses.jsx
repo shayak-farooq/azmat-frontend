@@ -96,7 +96,6 @@ function Addresses() {
     setIsFormOpen(!isFormOpen);
     
   };
-  /* ================= RENDER ================= */
   return (
     <section className="pt-24 flex flex-col items-center">
       <h1 className="text-4xl font-medium uppercase mb-12">Your addresses</h1>
@@ -146,12 +145,12 @@ function Addresses() {
 
       {/* ================= FORM ================= */}
       {isFormOpen && (
-        <form onSubmit={handleSubmit} className="w-4/5 pt-10 space-y-3">
+        <form onSubmit={handleSubmit} className="w-4/5 text-center pt-10 space-y-3">
           {[
             ["country", "Country/Region"],
             ["state", "State"],
             ["city", "Town/City"],
-            ["area", "Area, Street, Sector"],
+            ["area", "Area, village, Street, Sector"],
             ["building", "Flat / House / Building"],
             ["landmark", "Landmark"],
             ["pincode", "Pincode"],
@@ -163,16 +162,17 @@ function Addresses() {
               value={formData[name]}
               onChange={handleChange}
               placeholder={placeholder}
-              className="w-1/2 my-2 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-amber-400"
+              className="md:w-[45%] w-full m-2 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-amber-400"
               required={["country", "state", "city", "building", "pincode", "phone"].includes(name)}
             />
           ))}
 
-          <button className="float-right">
-            {editingId ? "Update address" : "Add address"}
+          <button className="float-right border rounded-xl p-2 border-gray-400 bg-">
+            {editingId ? <div>Update address</div> : <div>Add address</div>}
           </button>
         </form>
       )}
+      
     </section>
   );
 }

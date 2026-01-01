@@ -44,7 +44,7 @@ function Profile() {
           }}
           className={
             userData.role == "ADMIN"
-              ? `bg-black p-2 rounded-xl text-white hover:cursor-pointer absolute top-28 right-10`
+              ? `bg-black p-2 rounded-xl text-white hover:cursor-pointer absolute top-28 md:right-10 `
               : "hidden"
           }
         >
@@ -52,16 +52,23 @@ function Profile() {
         </button>
         <div className="mb-12">
           <h6 className="text-amber-600 text-center text-xl pb-4">welcome</h6>
-          <h1 className="text-4xl font-medium text-center uppercase">
+          <h1 className="md:text-4xl text-2xl font-medium text-center uppercase">
             {userData.name}
           </h1>
         </div>
-        <div className="p-8 flex w-[80%] border border-dotted border-zinc-300">
-          <div className=" w-1/2">
+        <div className="p-8  md:flex w-[80%] border border-dotted border-zinc-300">
+          <div className=" md:w-1/2 pb-4 md:p-0 border-b md:border-0 border-gray-400">
+            <h4 className="text-xl font-normal">Account details</h4>
+            {/* Links */}
+            <div className="mt-2.5">
+              <p className="mt-2.5">{userData.name}</p>
+              <p className="mt-2.5">{userData.email}</p>
+            </div>
+          </div>
+          <div className=" md:w-1/2 pt-4  md:p-0 ">
             <h4 className="text-xl font-normal">My account</h4>
             {/* Links */}
             <div className="mt-2.5">
-              {/* Todo Add logic */}
               <div>
                 <button
                   onClick={() => {
@@ -92,14 +99,7 @@ function Profile() {
               </button>
             </div>
           </div>
-          <div className=" w-1/2">
-            <h4 className="text-xl font-normal">Account details</h4>
-            {/* Links */}
-            <div className="mt-2.5">
-              <p className="mt-2.5">{userData.name}</p>
-              <p className="mt-2.5">{userData.email}</p>
-            </div>
-          </div>
+          
         </div>
       </section>
     </>
