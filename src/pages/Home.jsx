@@ -3,7 +3,7 @@ import About_product from "../components/Cards/About_product";
 import SingleProduct from "../components/Cards/SingleProduct.jsx";
 function Home() {
   const [slideindex, setSlideIndex] = useState(0);
-  const [products,setProducts] = useState([])
+  const [products, setProducts] = useState([]);
   const slides = [
     {
       heading: "100% NATURAL HONEY",
@@ -39,43 +39,55 @@ function Home() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
-  useEffect(()=>{
-    fetch('http://localhost:3000/api/products',{
-      method:'GET',
-      headers:{'contant-type': 'application/json'}
+  useEffect(() => {
+    fetch("http://localhost:3000/api/products", {
+      method: "GET",
+      headers: { "contant-type": "application/json" },
     })
-    .then(res=>{
-      console.log(res);
-      return res.json()
-    })
-    .then(result=>{
-      setProducts(result.products)
-    })
-  },[])
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((result) => {
+        setProducts(result.products);
+      });
+  }, []);
   return (
     <>
       <section
-        className={`flex items-center justify-center py-15 px-5 min-h-screen z-10 animate-fade-in`}
+        className="h-screen md-h-screen w-full overflow-hidden animate-fade-in"
         style={{
           backgroundImage: `url(${slides[slideindex].image})`,
           backgroundSize: "cover",
-          // backgroundPosition: "center",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="">
-          <h2 className="mb-4 text-black">{slides[slideindex].heading}</h2>
-          <p className="text-lg mb-7 text-gray-600">
-            {slides[slideindex].description}
-          </p>
-          <div>
-            <button className="bg-[#d4a574] text-white px-8 py-3 border-none text-sm font-bold cursor-pointer rounded hover:bg-[#b8925f] transition-colors duration-300 animate-pulse">
-              SHOP NOW
-            </button>
+        {/* Overlay for readability */}
+        <div className=" flex flex-col justify-center h-full w-full inset-0 bg-black/30">
+          {/* Content */}
+          <div className=" flex justify-center items-center w-1/2">
+            <div className="flex justify-center">
+              {/* Text Section */}
+              <div className="flex flex-col gap-3 items-center h-full lg:text-left">
+                <h2 className="mb-4 text-2xl md:text-3xl text-center lg:text-4xl font-bold text-white">
+                  {slides[slideindex].heading}
+                </h2>
+
+                <p className="max-w-xl mx-auto lg:mx-0 text-center md:text-lg text-gray-200">
+                  {slides[slideindex].description}
+                </p>
+
+                <button
+                  className="bg-amber-500  px-8 py-3 text-sm font-semibold text-white rounded-2xl hover:bg-amber-600"
+                >
+                  SHOP NOW
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="w-1/2"></div>
       </section>
-
       <section className="py-15 px-5 bg-white text-center animate-fade-in-up">
         <h2 className="font-serif text-4xl mb-10 text-black">Honey Products</h2>
         {/* <p className="text-lg mb-8 text-gray-600">
@@ -83,21 +95,19 @@ function Home() {
           flavors and health benefits.
         </p> */}
         <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 max-w-7xl mx-auto">
-          {
-            products.length !=0 && products.map(item=>(
-              <SingleProduct key={item._id}
-              productid={item._id}
-                instock = {item.inStock}
+          {products.length != 0 &&
+            products.map((item) => (
+              <SingleProduct
+                key={item._id}
+                productid={item._id}
+                instock={item.inStock}
                 title={item.title}
-                price={item.price} 
-                rating ={item.Rating}
+                price={item.price}
+                rating={item.Rating}
                 desc={item.desc}
-                images ={item.productImages}
+                images={item.productImages}
               />
-              
-            ))
-          }
-          
+            ))}
         </div>
       </section>
 
@@ -116,7 +126,7 @@ function Home() {
 
       <section className="py-15 px-5 bg-white text-center animate-fade-in-up">
         <h2 className="font-serif text-4xl mb-10 text-black">Latest News</h2>
-        <div className="overflow-hidden relative max-w-7xl mx-auto">
+        <div className="overflow-hidden relative w-full max-w-7xl mx-auto">
           <div
             className="flex gap-8 transition-transform duration-1000 ease-in-out"
             // style={{ transform: `translateX(-${currentNewsSlide * 100}%)` }}

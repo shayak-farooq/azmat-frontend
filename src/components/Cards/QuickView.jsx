@@ -19,7 +19,7 @@ function QuickView({ hidden, setHidden }) {
 
             <div className="flex pt-3">
               <div className="border border-gray-300 rounded-xl w-1/2 ">
-                <img src="" alt="Product image" />
+                <img src="src\assets\Images\product.jpeg" alt="Product image" />
               </div>
               <div className="w-1/2 border">
                 <div className="border-b">
