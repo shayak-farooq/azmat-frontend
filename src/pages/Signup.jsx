@@ -1,12 +1,26 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Signup() {
-  
-[data, setData]=useState({username:"", email:"",password:"" })
-function handleChange(){
+  const [data, setData] = useState({ name: "", email: "", password: "" });
+  const navigate = useNavigate()
 
-}
+  function handleChange(e) {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log(data)
+    const response = await fetch("http://localhost:3000/api/user/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...data }),
+    });
+    if(response.status == 200){
+      navigate(`/verifysignup?email=${data.email}&name=${data.name}`)
+    }
+    setData({ name: "", email: "", password: ""});
+  }
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-white">
@@ -15,14 +29,16 @@ function handleChange(){
             Sign Up
           </h2>
 
-          <form className="flex flex-col space-y-4">
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             {/* Username */}
             <label className="flex flex-col text-gray-700 text-sm font-medium">
-              Username
+              Full Name
               <input
                 type="text"
+                name="name"
+                onChange={handleChange}
                 className="mt-1 border bg-white border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-                placeholder="Enter your username" 
+                placeholder="Enter your Full Name"
                 required
               />
             </label>
@@ -32,6 +48,8 @@ function handleChange(){
               Email
               <input
                 type="email"
+                name="email"
+                onChange={handleChange}
                 className="mt-1 border bg-white border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
                 placeholder="Enter your email"
                 required
@@ -43,6 +61,8 @@ function handleChange(){
               Password
               <input
                 type="password"
+                name="password"
+                onChange={handleChange}
                 className="mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
                 placeholder="Enter your password"
                 required
@@ -63,7 +83,9 @@ function handleChange(){
           </form>
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-semibold pt-3">Already an account?</h3>
-            <NavLink to='/Login' className=" text-amber-600 text-l underline">Log in</NavLink>
+            <NavLink to="/Login" className=" text-amber-600 text-l underline">
+              Log in
+            </NavLink>
           </div>
         </div>
       </div>

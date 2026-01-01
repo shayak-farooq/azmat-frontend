@@ -1,23 +1,10 @@
-import React from "react";
 import { HiMiniPhoneArrowUpRight } from "react-icons/hi2";
-{
-  /*Phone Icon*/
-}
 import { FaLocationDot } from "react-icons/fa6";
-{
-  /*location*/
-}
 import { AiOutlineMail } from "react-icons/ai";
-{
-  /*email*/
-}
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 function Contact() {
   return (
     <>
-    <Navbar/>
       {/* === CONTACT CARDS SECTION === */}
       <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-10 py-12 px-4">
         {/* Contact Card Component */}
@@ -191,7 +178,6 @@ function Contact() {
           </button>
         </form>
       </div>
-      <Footer/>
     </>
   );
 }
