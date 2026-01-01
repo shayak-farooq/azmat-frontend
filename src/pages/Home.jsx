@@ -111,38 +111,38 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-15 px-5 bg-[#f9f8f6] text-center animate-fade-in">
-        <h2 className="font-serif text-6xl mb-8 text-black">
+      <section className="flex flex-col justify-evenly items-center p-5 h-screen bg-brand">
+        <h2 className="font-serif text-3xl md:text-6xl text-black">
           Our Testimonials
         </h2>
-        <blockquote className=" text-base italic text-gray-600 my-20 mx-auto max-w-[700px]  border-2-5 border-[#d4a574] ">
+        <blockquote className="flex flex-col justify-evenly text-center h-1/2 italic text-gray-600 ">
           “It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout.”
-          <footer className="text-2xl mt-3 text-black font-bold">
+          <footer className="text-l md-text-2xl text-black font-bold">
             — Ashley Rosa, Managing Director
           </footer>
         </blockquote>
       </section>
 
-      <section className="py-15 px-5 bg-white text-center animate-fade-in-up">
-        <h2 className="font-serif text-4xl mb-10 text-black">Latest News</h2>
-        <div className="overflow-hidden relative w-full max-w-7xl mx-auto">
+      <section className=" h-screen flex flex-col justify-evenly text-center p-2 animate-fade-in-up">
+        <h2 className="font-serif text-4xl text-black underline">Latest News</h2>
+        <div className="overflow-hidden h-2/3 p-2 relative w-full max-w-7xl mx-auto">
           <div
-            className="flex gap-8 transition-transform duration-1000 ease-in-out"
+            className="flex gap-8 p-2 h-full transition-transform duration-1000 ease-in-out"
             // style={{ transform: `translateX(-${currentNewsSlide * 100}%)` }}
           >
-            <div className="bg-white border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 hover:-translate-y-1 min-w-[550px] flex h-72 shrink-0">
+            <div className="bg-white flex justify-between items-center w-1/2 p-2 border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 min-w-[550px] shrink-0">
               <img
                 src="https://static.vecteezy.com/system/resources/previews/030/639/575/large_2x/honey-image-hd-free-photo.jpg"
                 alt="Beehive"
                 className="w-64 h-full object-cover"
               />
-              <div className="p-6 flex-1">
-                <h3 className="text-xl text-black mb-3">
+              <div className="pl-6 flex-1 flex flex-col justify-between space-y-2">
+                <h3 className="text-xl text-black">
                   Need best pure honey?
                 </h3>
-                <p className="text-base text-gray-600 mb-4">
-                  you are on the right path that serves pure organic honey
+                <p className="text-base text-gray-600">
+                  you are on the right path that serves pure organic honey.
                 </p>
                 <a
                   href="#"
@@ -152,13 +152,13 @@ function Home() {
                 </a>
               </div>
             </div>
-            <div className="bg-white border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 hover:-translate-y-1 min-w-[550px] flex h-72 shrink-0">
+            <div className="bg-white flex items-center w-1/2 p-2 border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 min-w-[550px] shrink-0">
               <img
                 src="https://th.bing.com/th/id/OIP.7WomGpGrVbvEKjZ5rYtrdwHaE6?o=7&cb=ucfimg2&rm=3&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
                 alt="Honey jars"
                 className="w-64 h-full object-cover"
               />
-              <div className="p-6 flex-1">
+              <div className="pl-6 flex-1 flex flex-col justify-between space-y-2">
                 <h3 className="text-xl text-black mb-3">
                   Even though they're ?
                 </h3>
@@ -174,13 +174,13 @@ function Home() {
                 </a>
               </div>
             </div>
-            <div className="bg-white border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 hover:-translate-y-1 min-w-[550px] flex h-72 shrink-0">
+            <div className="bg-white flex items-center  w-1/2 p-2 border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 min-w-[550px] shrink-0">
               <img
                 src="https://cdn.pixabay.com/photo/2018/05/27/22/13/honey-3434774_640.jpg"
                 alt="Honey on toast"
                 className="w-64 h-full object-cover"
               />
-              <div className="p-6 flex-1">
+              <div className="pl-6 flex-1 flex flex-col justify-between space-y-2">
                 <h3 className="text-xl text-black mb-3">How much do you ?</h3>
                 <p className="text-base text-gray-600 mb-4">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit
