@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 function Orders() {
   const [products, setProducts] = useState([]);
-  console.log("length", products.length, products);
   useEffect(() => {
     const token = localStorage.getItem("bearer");
     if (token == null) {
@@ -33,53 +32,41 @@ function Orders() {
   }, []);
   return (
     <>
-      {/* {orders.map(item =>(
-      <div key={item._id}>
-
-      </div>
-    ))} */}
-
-      <div className="flex items-center mt-40 border mx-auto w-4/5 justify-between">
-        <div>
-          image
-          {/* <img src="" alt="" /> */}
-        </div>
-        <div className="flex flex-col">
-          <span>name</span>
-          <span>Weight</span>
-        </div>
-        <div>
-          <span>Price</span>
-        </div>
-        <div>order status</div>
-        <div>
-          <span>delivery Date</span>
-        </div>
-      </div>
-      {products.length != 0 &&
-        products.map((item) => (
-          <div key={item._id} className="flex items-center mt-4 rounded border border-zinc-400 mx-auto w-4/5 justify-between">
+      {products.length != 0 ? (
+        products.map((item, index) => (
+          <div
+            key={item._id}
+            className="flex items-center gap-5 md:gap-2 p-2 mt-4 rounded border border-zinc-400 mx-auto w-4/5"
+          >
             <div>
-              image
-              {/* <img src="" alt="" /> */}
+              <img
+                className="w-20 h-20 rounded"
+                src={`http://localhost:3000/images/${products[index].productid.productImages[0]}`}
+                alt=""
+              />
             </div>
-            <div className="flex flex-col">
-              <span>{item.productid.title}</span>
-              <span>Weight</span>
-            </div>
-            <div>
-              <span>{item.priceDetails.sellingPrice}</span>
-            </div>
-            <div>{item.orderStatus}</div>
-            <div>
-              <span>{item.deliveryDate}</span>
+            <div className="md:flex justify-between md:w-full">
+              <div className="flex flex-col">
+                <span>Name: {item.productid.title}</span>
+                <span>Weight:</span>
+              </div>
+              <div>
+                <span>Price:{item.priceDetails.sellingPrice}</span>
+              </div>
+              <div>Status:{item.orderStatus}</div>
+              <div>
+                <span>Delivery Date:{item.deliveryDate}</span>
+              </div>
             </div>
           </div>
-          // <div key={item._id}>
-          // <p>{item.productid.title}</p>
-          // <p>{item.priceDetails.TotalPriceDetails}</p>
-          // </div>
-        ))}
+        ))
+      ) : (
+        <div className="text-center text-2xl p-32">
+          <span className="border p-5  rounded-2xl border-gray-400">
+            You haven’t placed any orders yet.
+          </span>
+        </div>
+      )}
     </>
   );
 }

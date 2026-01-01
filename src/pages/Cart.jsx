@@ -1,23 +1,9 @@
 import { useEffect, useState } from "react";
 import ProductImage from "../assets/Images/product.jpeg";
 import { useNavigate } from "react-router-dom";
+import { IoTrashBin } from "react-icons/io5"
 
 function Cart() {
-  // const [shippingAddress ,setShippingAddress] = useState({
-  //   shippingNote : '',
-  //   country : '',
-  //   state :'',
-  //   town:'',
-  //   name: '',
-  //   phone:'',
-  //   pincode:'',
-  //   houseNumber:'',
-  //   area:'',
-  //   landmark:''
-  // })
-  // const handleChange = (e)=>{
-  //   setShippingAddress({...shippingAddress,[e.target.name]:e.target.value})
-  // }
   const [products, setProducts] = useState([]);
   const [state, setState] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -98,13 +84,13 @@ function Cart() {
   }
   return (
     <>
-      <div className="lg:flex flex-col items-center justify-center pt-32">
+      {products.length !==0 ? (<div className="lg:flex flex-col items-center justify-center pt-32">
         {/* Product info */}
         <div className="bg-brand rounded-xl mx-10 ">
           <ul>
             {/* product heading */}
             <li>
-              <ul className="lg:grid grid-cols-5 hidden">
+              <ul className="lg:grid grid-cols-4 hidden">
                 <li className="text-center px-15 py-3 border-r border-zinc-300">
                   <div>Product item</div>
                 </li>
@@ -121,50 +107,13 @@ function Cart() {
             </li>
             {/* added products */}
             <li>
-              <ul className="lg:grid grid-cols-5 *:border-zinc-300 ">
-                {/* product details */}
-                <li className="lg:border-r lg:border-t border-b text-center py-3 lg:px-15 px-5 ">
-                  <div className="flex">
-                    <div className="">
-                      <img
-                        src={ProductImage}
-                        alt="product image"
-                        className=""
-                        width="60px"
-                      />
-                    </div>
-                    <div>
-                      <div>Product name</div>
-                      <div>other details</div>
-                    </div>
-                  </div>
-                </li>
-                {/* price */}
-                <li className="lg:flex justify-center items-center lg:border-r lg:border-t border-b py-3 lg:px-15 px-5">
-                  1000
-                </li>
-                {/* quantity */}
-                <li className="lg:flex justify-center items-center lg:border-r lg:border-t border-b py-3 lg:px-15 px-5">
-                  <div className=" inline-flex rounded-xl border border-zinc-300 bg-white ">
-                    <button className="px-3 py-2">-</button>
-                    <span className="border-x border-zinc-300 px-3 py-2">
-                      2
-                    </span>
-                    <button className="px-3 py-2">+</button>
-                  </div>
-                </li>
-                {/* Total Price */}
-                <li className=" lg:flex justify-center items-center py-3 lg:border-t lg:border-b lg:px-15 px-5">
-                  2000
-                </li>
-              </ul>
               <ul>
                 {products ? (
                   <li>
                     {products.map((item) => (
                       <ul
                         key={item.productdetails._id}
-                        className="lg:grid grid-cols-5 *:border-zinc-300 "
+                        className="lg:grid grid-cols-4 *:border-zinc-300 "
                       >
                         <li className="lg:border-r lg:border-t border-b text-center py-3 lg:px-15 px-5 ">
                           <div className="flex">
@@ -185,8 +134,8 @@ function Cart() {
                         <li className="lg:flex justify-center items-center lg:border-r lg:border-t border-b py-3 lg:px-15 px-5">
                           {item.productdetails.price}
                         </li>
-                        <li className="lg:flex justify-center items-center lg:border-r lg:border-t border-b py-3 lg:px-15 px-5">
-                          <div className=" inline-flex rounded-xl border border-zinc-300 bg-white ">
+                        <li className="flex lg:justify-center items-center gap-3 lg:border-r lg:border-t border-b py-3 lg:px-15 px-5">
+                          <div className="inline-flex justify-center items-center rounded-xl border border-zinc-300 bg-white ">
                             <button
                               className="px-3 py-2"
                               onClick={() => {
@@ -211,19 +160,17 @@ function Cart() {
                               +
                             </button>
                           </div>
-                        </li>
-                        <li className=" lg:flex justify-center items-center py-3 lg:border-t lg:border-b lg:px-15 px-5">
-                          {item.productdetails.price * item.quantity}
-                        </li>
-                        <li className=" lg:flex justify-center items-center py-3 lg:border-t lg:border-b lg:px-15 px-5">
-                          <button
+                            <button
                             onClick={() => {
                               handleRemove(item.productdetails._id);
                             }}
-                            className="bg-red-600 px-3 py-2 rounded-xl text-white hover:cursor-pointer"
+                            className="hover:cursor-pointer "
                           >
-                            Remove item
+                            <IoTrashBin className="text-2xl"/>
                           </button>
+                        </li>
+                        <li className=" lg:flex justify-center items-center py-3 lg:border-t lg:border-b lg:px-15 px-5">
+                          {item.productdetails.price * item.quantity}
                         </li>
                       </ul>
                     ))}
@@ -264,8 +211,14 @@ function Cart() {
             </button>
           </div>
         </div>
-      </div>
+      </div>): (<div className="text-center text-2xl p-32">
+        <span className="border p-5  rounded-2xl border-gray-400">
+          Your cart is empty
+        </span>
+      </div>)}
+      
     </>
+    
   );
 }
 

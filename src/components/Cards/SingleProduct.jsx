@@ -58,23 +58,24 @@ function SingleProduct(props) {
   return (
     <>
       <QuickView hidden={hidden} setHidden={setHidden} />
-      <div className="w-1/4 mx-4 my-3 group relative">
+      <div className=" mx-4 my-3 group relative">
         {/* Product image */}
         <div className="flex items-center justify-center">
-          {item.state ? (
+          {item.state && (
             //Todo background should be blured
             <div className="absolute bg-white opacity-80 border border-gray-400 rounded-xl py-2 px-7">
               {item.text}
             </div>
-          ) : (
-            <div className="hidden"></div>
           )}
           {/* <img src={productImage} alt="" className="" /> */}
+          <div className="">
           <img
             src={`http://localhost:3000/images/${props.images[0]}`}
             alt="product image"
-            className="rounded-xl border border-zinc-300"
+            className="rounded-xl border h-72 w-60 border-zinc-300"
           />
+
+          </div>
         </div>
         {/* Product details */}
         <div>
