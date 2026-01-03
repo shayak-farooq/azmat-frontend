@@ -57,7 +57,7 @@ function SingleProduct(props) {
   // console.log("images",props.images[0])
   return (
     <>
-      <QuickView hidden={hidden} setHidden={setHidden} />
+      <QuickView hidden={hidden} setHidden={setHidden} addToCart={addToCart} productid={props.productid} item={item} title={props.title} price={props.price} images={props.images} />
       <div className=" mx-4 my-3 group relative">
         {/* Product image */}
         <div className="flex items-center justify-center">

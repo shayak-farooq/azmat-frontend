@@ -1,9 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { RiEyeCloseLine } from "react-icons/ri";
+import { RiEyeLine } from "react-icons/ri";
 
 export default function Login() {
   const [error,setError] = useState('')
   const [data, setData] = useState({ email: "", password: "" });
+  const [show ,setShow] = useState(false)
   const navigate = useNavigate()
 
   function handleChange(e) {
@@ -60,16 +63,21 @@ export default function Login() {
             </label>
             
             {/* Password */}
-            <label className="flex flex-col text-gray-700 text-sm font-medium">
+            <label className="relative flex flex-col  text-gray-700 text-sm font-medium">
               Password
               <input
-                type="password"
+                type={show ? 'text' : 'password'}
                 name="password"
-                className="mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className=" mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
                 placeholder="Enter your password"
                 onChange={handleChange}
                 required
               />
+              <button type="button" className="absolute right-3 bottom-3" onClick={()=>{setShow(!show)}}>
+                {
+                  show ? <RiEyeLine/> : <RiEyeCloseLine/>
+                }
+              </button>
             </label>
             {error? <span className="text-red-400 text-xs">*{error}</span> : ""}
             {/* Submit Button */}

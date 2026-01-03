@@ -1,25 +1,43 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { RiEyeCloseLine } from "react-icons/ri";
+import { RiEyeLine } from "react-icons/ri";
 
 function Signup() {
-  const [data, setData] = useState({ name: "", email: "", password: "" });
-  const navigate = useNavigate()
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(data)
+    if (data.password !== data.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
     const response = await fetch("http://localhost:3000/api/user/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data }),
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      }),
     });
-    if(response.status == 200){
-      navigate(`/verifysignup?email=${data.email}&name=${data.name}`)
+    if (!response.ok) {
+      setError("Email already registered");
     }
-    setData({ name: "", email: "", password: ""});
+    navigate(`/verifysignup?email=${data.email}&name=${data.name}`);
+
+    setData({ name: "", email: "", password: "", confirmPassword: "" });
   }
   return (
     <>
@@ -57,22 +75,55 @@ function Signup() {
             </label>
 
             {/* Password */}
-            <label className="flex flex-col text-gray-700 text-sm font-medium">
+            <label className="relative flex flex-col text-gray-700 text-sm font-medium">
               Password
               <input
-                type="password"
+                type={show ? "text" : "password"}
                 name="password"
                 onChange={handleChange}
                 className="mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
                 placeholder="Enter your password"
                 required
-                minLength={7}
+                minLength={8}
                 maxLength={10}
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,10}$"
                 title="Password must be 7-10 characters and include letters, numbers, and at least one symbol."
               />
+              <button
+                className="absolute right-3 bottom-3"
+                type="button"
+                onClick={() => {
+                  setShow(!show);
+                }}
+              >
+                {show ? <RiEyeLine /> : <RiEyeCloseLine />}
+              </button>
             </label>
-
+            <label className="relative flex flex-col text-gray-700 text-sm font-medium">
+              Confirm Password
+              <input
+                type={show ? "text" : "password"}
+                name="confirmPassword"
+                onChange={handleChange}
+                className="mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                placeholder="Enter your password"
+                required
+                minLength={8}
+                maxLength={10}
+                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,10}$"
+                title="Password must be 7-10 characters and include letters, numbers, and at least one symbol."
+              />
+              <button
+                className="absolute right-3 bottom-3"
+                type="button"
+                onClick={() => {
+                  setShow(!show);
+                }}
+              >
+                {show ? <RiEyeLine /> : <RiEyeCloseLine />}
+              </button>
+            </label>
+            {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
             {/* Submit Button */}
             <button
               type="submit"

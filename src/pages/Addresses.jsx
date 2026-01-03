@@ -24,7 +24,10 @@ function Addresses() {
   /* ================= FETCH PROFILE ================= */
   useEffect(() => {
     const token = localStorage.getItem("bearer");
-
+    if (token == null) {
+      navigate("/login");
+      return;
+    }
     fetch("http://localhost:3000/api/user/profile", {
       headers: {
         Authorization: `Bearer ${token}`,
