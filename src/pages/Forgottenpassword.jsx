@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { CgLogIn } from "react-icons/cg";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Forgottenpassword() {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate()
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await fetch(
@@ -13,6 +15,9 @@ function Forgottenpassword() {
         body: JSON.stringify({ email }),
       }
     );
+    if(response.ok){
+      navigate(`/forgototp/${email}`)
+    }
     const data = await response.json(); // <--- read JSON
     if(data.err){
     console.log("Error:", data.err);
@@ -20,6 +25,7 @@ function Forgottenpassword() {
     if(data.message){
     console.log("Message:", data.message);
     }
+    console.log(email)
   }
   return (
     <>
