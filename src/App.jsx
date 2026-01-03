@@ -26,6 +26,8 @@ import Checkout from "./pages/Checkout";
 import Addresses from "./pages/Addresses";
 import Orders from "./pages/Orders";
 import Vieworder from "./admin/pages/Vieworder";
+import ForgottenPasswordOtp from "./pages/ForgottenPasswordOtp";
+import UpdatePassword from "./pages/UpdatePassword";
 
 function App() {
   return (
@@ -45,6 +47,9 @@ function App() {
         <Route path="/verifysignup" element={<Signupotp/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgottenpassword" element={<Forgottenpassword />} />
+        <Route path="/forgototp/:email" element={<ForgottenPasswordOtp />} />
+        <Route path="/updatepassword" element={<UpdatePassword />} />
+
         <Route path="/signupotp" element={<Signupotp />} />
 
         <Route path="/cart" element={<Cart />} />

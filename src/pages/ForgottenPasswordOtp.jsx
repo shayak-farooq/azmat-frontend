@@ -1,33 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import { data, useParams } from "react-router-dom";
 
 function ForgottenPasswordOtp() {
+  const {email} = useParams()
+  const[OTP,setOTP]=useState("")
+  function handleChange(e) {
+    setOTP({ ...data, [e.target.name]: e.target.value})
+    console.log(OTP);
+    
+  }
+   async function handleSubmit(e) {
+    e.preventDefault();
+    const response = await fetch(
+      "http://localhost:3000/api/user/forgototp",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email,OTP }),
+      }
+    );
+    const data = await response.json(); // <--- read JSON
+
+    if(data.err){
+    console.log("Error:", data.err);
+    }
+    
+  }
   return (
     <>
       <div className="bg-white flex justify-center items-center min-h-screen">
         <div className="p-6 bg-brand rounded-xl shadow-md w-full max-w-md">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-6">
-            Forgotten password
+            OTP verification
           </h2>
           <h4 className=" text-gray-500 text-l text-center py-4">
-            we will send you a mail to reset your password
+            OTP is sent to your registere email id for verification.
           </h4>
 
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            {/* Email input */}
-            <label className="flex flex-col text-gray-700 text-m font-medium">
-              Email
+            {/* OTp input */}
+            
               <input
-                type="email"
-                name="email"
+                type="text"
+                name="otp"
                 className="mt-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-                placeholder="Enter your email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                value={email}
+                placeholder="Enter your OTP"
+                onChange={handleChange}
+                minLength={6}
+                maxLength={6}
                 required
               />
-            </label>
+               <button
+              type="submit"
+              className="bg-amber-400 hover:bg-amber-500 text-white font-semibold py-2 rounded-lg transition-colors"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>
