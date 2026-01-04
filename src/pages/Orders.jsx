@@ -30,7 +30,7 @@ function Orders() {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.orders);
+        // console.log(result.orders);
         const allproducts = result.orders.flatMap((item) =>
           item.productdetails.map((product) => ({
             ...product,
@@ -40,8 +40,8 @@ function Orders() {
           }))
         );
         setProducts(allproducts);
-        console.log("allproducts", allproducts);
-        console.log(products);
+        // console.log("allproducts", allproducts);
+        // console.log(products);
       });
   }, []);
   return (
@@ -62,7 +62,13 @@ function Orders() {
             <div className="md:flex justify-between md:w-full">
               <div className="flex flex-col">
                 <span>Name: {item.productid.title}</span>
-                <span>Weight: 500 gm</span>
+                <span>
+                  {item.productid.netWeight < 3
+                    ? `${item.productid.netWeight} Kg`
+                    : item.productid.netWeight > 100
+                    ? `${item.productid.netWeight} gm`
+                    : `${item.productid.netWeight} Kg`}
+                </span>
               </div>
               <div>
                 <span>Price: {item.priceDetails.sellingPrice}</span>

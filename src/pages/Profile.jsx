@@ -86,7 +86,7 @@ function Profile() {
                     Navigate("/orders");
                   }}
                 >
-                  Orders
+                  My Orders
                 </button>
               </div>
               <button

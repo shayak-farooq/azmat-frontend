@@ -86,6 +86,7 @@ function SingleProduct(props) {
         item={item}
         title={props.title}
         price={props.price}
+        netWeight={props.netWeight}
         images={props.images}
       />
       <div className=" mx-4 my-3 group relative">
@@ -112,6 +113,13 @@ function SingleProduct(props) {
           <div className=" text-center flex flex-col">
             <h2>{props.title}</h2>
             <span>{props.price}</span>
+            <span>
+              {props.netWeight < 3
+                ? `${props.netWeight} Kg`
+                : props.netWeight > 100
+                ? `${props.netWeight} gm`
+                : `${props.netWeight} Kg`}
+            </span>
             {/* <span>★★★★★</span> */}
             <StarRating rating={props.rating} />
             <p className="md:hidden">{props.desc}</p>

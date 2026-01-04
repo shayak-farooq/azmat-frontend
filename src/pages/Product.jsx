@@ -17,7 +17,7 @@ function Products() {
       return response.json()
     })
     .then(data =>{
-      // console.log('products',data.products);
+      console.log('products',data.products);
       setProducts(data.products)
     })
   },[]);
@@ -49,6 +49,7 @@ function Products() {
                 instock = {item.inStock}
                 title={item.title}
                 price={item.price} 
+                netWeight={item.netWeight} 
                 rating ={item.Rating}
                 desc={item.desc}
                 images ={item.productImages}

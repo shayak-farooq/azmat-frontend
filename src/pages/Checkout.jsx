@@ -27,7 +27,6 @@ function Checkout() {
   }
   const navigate = useNavigate();
   useEffect(() => {
-
     const token = localStorage.getItem("bearer");
     if (token == null) {
       navigate("/login");
@@ -61,28 +60,28 @@ function Checkout() {
     });
     setTotalAmount(total);
   }
-  function handleCheckOut(){
+  function handleCheckOut() {
     const token = localStorage.getItem("bearer");
-    if (paymentMethod == 'COD'){
-      fetch('http://localhost:3000/api/orders',{
-        method:"POST",
-        headers: { 
+    if (paymentMethod == "COD") {
+      fetch("http://localhost:3000/api/orders", {
+        method: "POST",
+        headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json" 
+          "Content-Type": "application/json",
         },
-        body:JSON.stringify({
+        body: JSON.stringify({
           products,
           addressFormData,
-          paymentMethod
+          paymentMethod,
+        }),
+      })
+        .then((res) => {
+          if (res.status == 201) {
+            navigate("/orders");
+          }
+          return res.json();
         })
-      })
-      .then(res=>{
-        if(res.status == 201){
-          navigate('/orders')
-        }
-        return res.json()
-      })
-      .then(result=> console.log(result))
+        .then((result) => console.log(result));
     }
     console.log(addressFormData);
     console.log(paymentMethod);
@@ -241,7 +240,6 @@ function Checkout() {
                       onChange={() => setPaymentMethod("COD")}
                     />
                     <label htmlFor="COD" className="cursor-pointer">
-                      
                       Cash On Delivery (COD)
                     </label>
                   </div>
@@ -262,7 +260,10 @@ function Checkout() {
                   </div>
                 </div>
               </div>
-              <button onClick={()=>handleCheckOut()} className="w-full my-2 bg-amber-400 hover:bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors">
+              <button
+                onClick={() => handleCheckOut()}
+                className="w-full my-2 bg-amber-400 hover:bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors"
+              >
                 {paymentMethod == "COD" ? "Place Order" : "Pay now"}
               </button>
             </div>
@@ -290,7 +291,14 @@ function Checkout() {
                     </div>
                     <div className="w-4/8 pl-2">
                       <div>{item.productdetails.title}</div>
-                      <div>color/weight</div>
+                      <div>
+                        color/
+                        {item.productdetails.netWeight < 3
+                          ? `${item.productdetails.netWeight} Kg`
+                          : item.productdetails.netWeight > 100
+                          ? `${item.productdetails.netWeight} gm`
+                          : `${item.productdetails.netWeight} Kg`}
+                      </div>
                     </div>
                     <div className="w-2/8 flex justify-end">
                       <span>{item.productdetails.price}</span>

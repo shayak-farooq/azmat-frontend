@@ -74,8 +74,8 @@ const AdminProducts = () => {
                   <th>Product Name</th>
                   <th>Selling price</th>
                   <th>discount</th>
+                  <th>weight</th>
                   <th>In Stock</th>
-                  <th></th>
                 </tr>
               </thead>
               {products  ? (
@@ -97,6 +97,7 @@ const AdminProducts = () => {
                       </td>
                       <td>{item.price}</td>
                       <td>{item.discount} %</td>
+                      <td>{item.netWeight}</td>
                       <td>{item.inStock}</td>
                       <td>
                         <button className="mr-2 hover:cursor-pointer" onClick={()=>{handleEdit(item._id)}}>Edit</button>
