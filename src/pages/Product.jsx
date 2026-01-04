@@ -13,11 +13,11 @@ function Products() {
       headers:{'content-type':'application/json'}
     })
     .then(response=>{
-      console.log(response);
+      // console.log(response);
       return response.json()
     })
     .then(data =>{
-      console.log('products',data.products);
+      // console.log('products',data.products);
       setProducts(data.products)
     })
   },[]);

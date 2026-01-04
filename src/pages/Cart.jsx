@@ -22,7 +22,7 @@ function Cart() {
       },
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status == 401) {
           navigate("/login");
         }
@@ -30,7 +30,7 @@ function Cart() {
       })
       .then((data) => {
         setProducts(data.products);
-        console.log("products", data.products);
+        // console.log("products", data.products);
         calculateTotalAmount(data.products);
       });
   }, [state]);
@@ -67,7 +67,7 @@ function Cart() {
     if (value == -1) {
       quantity--;
     }
-    console.log(quantity);
+    // console.log(quantity);
     const token = localStorage.getItem("bearer");
     const response = await fetch(
       `http://localhost:3000/api/cart/updatequantity/${productid}`,
@@ -81,7 +81,7 @@ function Cart() {
       }
     );
     const result = response.json();
-    console.log(result);
+    // console.log(result);
     if (response.status == 200) {
       setState(state + 1);
     }

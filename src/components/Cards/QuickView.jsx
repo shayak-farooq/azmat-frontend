@@ -53,10 +53,10 @@ function QuickView(props) {
 
             <div className="flex flex-col gap-3">
               <div>
-                <label className="block text-sm mb-1">Size:</label>
+                <label className="block text-sm mb-1">Weight:</label>
                 <select disabled className="w-full border rounded-md px-3 py-2 text-sm">
                   <option>100gm</option>
-                  <option selected>500gm</option>
+                  <option defaultValue={500} selected>500gm</option>
                   <option>1kg</option>
                 </select>
               </div>

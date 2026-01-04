@@ -282,7 +282,7 @@ function Checkout() {
                     <div className="w-2/8 flex justify-center items-center h-[90%] ">
                       <div className="h-[90%] w-4/5 flex items-center justify-center ">
                         <img
-                          src="https://cdn.shopify.com/s/files/1/0581/4311/3271/files/honey-pro-5_128x128.jpg?v=1726036794"
+                          src={`http://localhost:3000/images/${item.productdetails.productImages[0]}`}
                           alt="null"
                           className="max-h-full max-w-full object-cover rounded"
                         />

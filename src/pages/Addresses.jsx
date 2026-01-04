@@ -68,6 +68,7 @@ function Addresses() {
       setSavedData(data);
       setIsFormOpen(false);
       setEditingId(null);
+      navigate(0)
     }
   };
 
@@ -87,6 +88,7 @@ function Addresses() {
     if (response.ok) {
       const data = await response.json();
       setSavedData(data);
+      navigate(0)
     }
   };
 

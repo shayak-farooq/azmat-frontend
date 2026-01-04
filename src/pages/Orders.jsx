@@ -5,15 +5,15 @@ function Orders() {
   const [products, setProducts] = useState([]);
   const Navigate = useNavigate();
   function formatDateTime(date) {
-  return new Date(date).toLocaleString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    // hour: "2-digit",
-    // minute: "2-digit",
-    // hour12: true,
-  });
-}
+    return new Date(date).toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      // hour: "2-digit",
+      // minute: "2-digit",
+      // hour12: true,
+    });
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("bearer");
@@ -35,7 +35,8 @@ function Orders() {
           item.productdetails.map((product) => ({
             ...product,
             orderStatus: item.status,
-            deliveryDate: item.deliveryDate?.actualDeliveryDate || item.deliveryDate?.expectedDeliveryDate,
+            actualDeliveryDate: item.deliveryDate?.actualDeliveryDate,
+            expectedDeliveryDate: item.deliveryDate?.expectedDeliveryDate,
           }))
         );
         setProducts(allproducts);
@@ -68,7 +69,16 @@ function Orders() {
               </div>
               <div>Status: {item.orderStatus}</div>
               <div>
-                <span>Delivery Date: {formatDateTime(item.deliveryDate)}</span>
+                {item.actualDeliveryDate ? (
+                  <span>
+                    Delivery Date: {formatDateTime(item.actualDeliveryDate)}
+                  </span>
+                ) : (
+                  <span>
+                    Expected Delivery Date:{" "}
+                    {formatDateTime(item.expectedDeliveryDate)}
+                  </span>
+                )}
               </div>
             </div>
           </div>

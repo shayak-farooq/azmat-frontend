@@ -45,7 +45,6 @@ function Home() {
       headers: { "contant-type": "application/json" },
     })
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((result) => {
