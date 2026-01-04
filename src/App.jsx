@@ -17,7 +17,7 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import QuickView from "./components/Cards/QuickView";
 
-import AdminDashboard from "./admin/pages/AdminDashboard";
+// import AdminDashboard from "./admin/pages/AdminDashboard";
 import AdminProducts from "./admin/pages/AdminProducts";
 import AdminOrders from "./admin/pages/AdminOrders";
 import AddProducts from "./admin/pages/AddProducts";
@@ -60,8 +60,8 @@ function App() {
       
       {/* ADMIN SIDE ROUTES (NO Navbar & Footer) */}
       <Route element={<AdminLayout />}>
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/products" element={<AdminProducts />} />
+        {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+        <Route path="/admin" element={<AdminProducts />} />
         <Route path="/admin/addproduct" element={<AddProducts />} />
         <Route path="/admin/editproduct/:id" element={<EditProducts />} />
         <Route path="/admin/orders" element={<AdminOrders />} />

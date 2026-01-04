@@ -19,13 +19,13 @@ function AdminNavbar() {
         </div>
         <div>
           <ul>
-            <NavLink to="/admin">
+            {/* <NavLink to="/admin">
               <li className="flex item-center text-xl border-b border-zinc-300 py-3 gap-2">
                 <AiFillDashboard className="m-1" />
                 <span className="">Dashboard</span>
               </li>
-            </NavLink>
-            <NavLink to="/admin/products">
+            </NavLink> */}
+            <NavLink to="/admin">
               <li className="flex item-center text-xl border-b border-zinc-300 py-3 gap-2">
                 <IoPricetagsSharp className="m-1" />
                 <span>Product</span>

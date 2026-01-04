@@ -10,6 +10,10 @@ function Cart() {
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("bearer");
+    if (token == null) {
+      navigate("/login");
+      return;
+    }
     fetch("http://localhost:3000/api/cart/getcart", {
       method: "GET",
       headers: {
@@ -118,12 +122,12 @@ function Cart() {
                         <li className="lg:border-r lg:border-t border-b text-center py-3 lg:px-15 px-5 ">
                           <div className="flex">
                             <div className="">
-                              {/* <img
-                              src={ProductImage}
+                              <img
+                              src={`http://localhost:3000/images/${item.productdetails.productImages[0]}`}
                               alt="product image"
                               className=""
                               width="60px"
-                            /> */}
+                            />
                             </div>
                             <div>
                               <div>{item.productdetails.title}</div>

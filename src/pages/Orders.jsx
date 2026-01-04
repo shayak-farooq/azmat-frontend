@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Orders() {
   const [products, setProducts] = useState([]);
+  const Navigate = useNavigate();
+  function formatDateTime(date) {
+  return new Date(date).toLocaleString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    // hour: "2-digit",
+    // minute: "2-digit",
+    // hour12: true,
+  });
+}
+
   useEffect(() => {
     const token = localStorage.getItem("bearer");
     if (token == null) {
@@ -22,7 +35,7 @@ function Orders() {
           item.productdetails.map((product) => ({
             ...product,
             orderStatus: item.status,
-            deliveryDate: item.deliveryDate.expectedDeliveryDate,
+            deliveryDate: item.deliveryDate?.actualDeliveryDate || item.deliveryDate?.expectedDeliveryDate,
           }))
         );
         setProducts(allproducts);
@@ -48,14 +61,14 @@ function Orders() {
             <div className="md:flex justify-between md:w-full">
               <div className="flex flex-col">
                 <span>Name: {item.productid.title}</span>
-                <span>Weight:</span>
+                <span>Weight: 500 gm</span>
               </div>
               <div>
-                <span>Price:{item.priceDetails.sellingPrice}</span>
+                <span>Price: {item.priceDetails.sellingPrice}</span>
               </div>
-              <div>Status:{item.orderStatus}</div>
+              <div>Status: {item.orderStatus}</div>
               <div>
-                <span>Delivery Date:{item.deliveryDate}</span>
+                <span>Delivery Date: {formatDateTime(item.deliveryDate)}</span>
               </div>
             </div>
           </div>

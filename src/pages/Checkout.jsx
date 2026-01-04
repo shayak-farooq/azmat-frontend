@@ -27,7 +27,12 @@ function Checkout() {
   }
   const navigate = useNavigate();
   useEffect(() => {
+
     const token = localStorage.getItem("bearer");
+    if (token == null) {
+      navigate("/login");
+      return;
+    }
     fetch("http://localhost:3000/api/cart/getcart", {
       method: "GET",
       headers: {
@@ -97,10 +102,10 @@ function Checkout() {
           </NavLink>
         </div>
       </header>
-      <main className="flex">
+      <main className="flex flex-col-reverse md:flex-row">
         {/* Left div */}
-        <div className="flex justify-end w-1/2 border-r border-gray-400">
-          <div className=" w-2/3 px-8 ">
+        <div className="flex justify-start md:justify-center w-full md:w-1/2 md:border-r border-gray-400">
+          <div className="w-full md:w-2/3 px-4 md:px-8">
             <div className="">
               <h3 className="font-semibold text-l my-2">Address</h3>
               {addresses.map((item) => (
@@ -264,8 +269,8 @@ function Checkout() {
           </div>
         </div>
         {/* Right div */}
-        <div className="flex justify-start w-1/2 px-4 py-2 bg-brand">
-          <div className="w-2/3 px-4 py-2">
+        <div className="flex justify-start w-full md:w-1/2 px-4 md:px-6 py-2 bg-brand">
+          <div className="w-full md:w-2/3 px-2 md:px-4 py-2">
             <div className="max-h-60 flex flex-col">
               <div className="overflow-auto">
                 {/* <Checkout_Card /> */}
