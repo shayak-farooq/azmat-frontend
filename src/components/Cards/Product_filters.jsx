@@ -3,7 +3,7 @@ import React from "react";
 function Product_filters() {
   return (
     <>
-      <div>
+      <div className="pointer-events-none opacity-60">
         <div className="mb-7 border-b border-zinc-400 pb-8">
           <h4 className="mb-7 text-xl font-normal">Filters</h4>
           <span className="text-base text-[#333333]">10 Products</span>

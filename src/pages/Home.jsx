@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import About_product from "../components/Cards/About_product";
 import SingleProduct from "../components/Cards/SingleProduct.jsx";
+import HoneySlider from "../components/Cards/HoneySlider.jsx";
+import TestimonialCard from "../components/Cards/TestimonialCard.jsx";
 function Home() {
   const [slideindex, setSlideIndex] = useState(0);
   const [products, setProducts] = useState([]);
@@ -110,89 +112,16 @@ function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col justify-evenly items-center p-5 h-screen bg-brand">
+      <section className="flex flex-col justify-evenly items-center p-7 bg-brand">
         <h2 className="font-serif text-3xl md:text-6xl text-black">
           Our Testimonials
         </h2>
-        <blockquote className="flex flex-col justify-evenly text-center h-1/2 italic text-gray-600 ">
-          “It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout.”
-          <footer className="text-l md-text-2xl text-black font-bold">
-            — Ashley Rosa, Managing Director
-          </footer>
-        </blockquote>
+        <TestimonialCard/>
       </section>
 
       <section className="py-15 px-5 bg-white text-center animate-fade-in-up">
-        <h2 className="font-serif text-4xl mb-10 text-black">Latest News</h2>
-        <div className="overflow-hidden flex flex-wrap md:flex-no relative max-w-7xl mx-auto">
-          <div
-            className="flex gap-8 p-2 h-full transition-transform duration-1000 ease-in-out"
-            // style={{ transform: `translateX(-${currentNewsSlide * 100}%)` }}
-          >
-            <div className="bg-white flex justify-between items-center w-1/2 p-2 border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 min-w-[550px] shrink-0">
-              <img
-                src="https://static.vecteezy.com/system/resources/previews/030/639/575/large_2x/honey-image-hd-free-photo.jpg"
-                alt="Beehive"
-                className="w-64 h-full object-cover"
-              />
-              <div className="pl-6 flex-1 flex flex-col justify-between space-y-2">
-                <h3 className="text-xl text-black">Need best pure honey?</h3>
-                <p className="text-base text-gray-600">
-                  you are on the right path that serves pure organic honey.
-                </p>
-                <a
-                  href="#"
-                  className="text-[#d4a574] no-underline font-bold transition-colors duration-300 hover:text-[#b8925f]"
-                >
-                  READ MORE
-                </a>
-              </div>
-            </div>
-            <div className="bg-white flex items-center w-1/2 p-2 border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 min-w-[550px] shrink-0">
-              <img
-                src="https://th.bing.com/th/id/OIP.7WomGpGrVbvEKjZ5rYtrdwHaE6?o=7&cb=ucfimg2&rm=3&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
-                alt="Honey jars"
-                className="w-64 h-full object-cover"
-              />
-              <div className="pl-6 flex-1 flex flex-col justify-between space-y-2">
-                <h3 className="text-xl text-black mb-3">
-                  Even though they're ?
-                </h3>
-                <p className="text-base text-gray-600 mb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  doli...
-                </p>
-                <a
-                  href="#"
-                  className="text-[#d4a574] no-underline font-bold transition-colors duration-300 hover:text-[#b8925f]"
-                >
-                  READ MORE
-                </a>
-              </div>
-            </div>
-            <div className="bg-white flex items-center  w-1/2 p-2 border border-gray-300 rounded-lg overflow-hidden text-left transition-transform duration-300 min-w-[550px] shrink-0">
-              <img
-                src="https://cdn.pixabay.com/photo/2018/05/27/22/13/honey-3434774_640.jpg"
-                alt="Honey on toast"
-                className="w-64 h-full object-cover"
-              />
-              <div className="pl-6 flex-1 flex flex-col justify-between space-y-2">
-                <h3 className="text-xl text-black mb-3">How much do you ?</h3>
-                <p className="text-base text-gray-600 mb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  doli...
-                </p>
-                <a
-                  href="#"
-                  className="text-[#d4a574] no-underline font-bold transition-colors duration-300 hover:text-[#b8925f]"
-                >
-                  READ MORE
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h2 className="font-serif text-4xl mb-10 text-black">Experience 4 types of uniquely wild honey</h2>
+        <HoneySlider/>
       </section>
     </>
   );

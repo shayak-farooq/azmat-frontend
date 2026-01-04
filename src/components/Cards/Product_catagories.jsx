@@ -3,7 +3,7 @@ import React from "react";
 function Product_catagories() {
   return (
     <>
-      <div className="mb-7 border-b border-zinc-400 pb-8">
+      <div className=" pointer-events-none opacity-60 mb-7 border-b border-zinc-400 pb-8">
         <h6 className="text-xl font-normal">Categories</h6>
         <div className="mt-7">
           <ul>
