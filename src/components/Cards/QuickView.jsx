@@ -9,7 +9,7 @@ function QuickView(props) {
     >
       {/* Card */}
       <div
-        className="bg-white w-[700px] rounded-xl shadow-lg p-6"
+        className="bg-white w-[700px] rounded-xl shadow-lg p-6 text-left"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

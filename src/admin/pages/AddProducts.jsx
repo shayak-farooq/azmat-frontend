@@ -66,7 +66,7 @@ function AddProducts() {
     const result = await response.json();
     console.log(result);
     if (response.status == 201) {
-      navigate("/admin/products");
+      navigate("/admin");
     }
     if (response.status !== 201) {
       console.log(result.err);

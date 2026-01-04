@@ -3,6 +3,27 @@ import { useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import QuickView from "./QuickView";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+
+function StarRating({ rating }) {
+  const totalStars = 5;
+
+  return (
+    <div className="flex justify-center text-amber-500">
+      {[...Array(totalStars)].map((_, index) => {
+        const starValue = index + 1;
+
+        if (rating >= starValue) {
+          return <FaStar key={index} />;
+        } else if (rating >= starValue - 0.5) {
+          return <FaStarHalfAlt key={index} />;
+        } else {
+          return <FaRegStar key={index} />;
+        }
+      })}
+    </div>
+  );
+}
 
 function SingleProduct(props) {
   const [hidden, setHidden] = useState(true);
@@ -57,7 +78,16 @@ function SingleProduct(props) {
   // console.log("images",props.images[0])
   return (
     <>
-      <QuickView hidden={hidden} setHidden={setHidden} addToCart={addToCart} productid={props.productid} item={item} title={props.title} price={props.price} images={props.images} />
+      <QuickView
+        hidden={hidden}
+        setHidden={setHidden}
+        addToCart={addToCart}
+        productid={props.productid}
+        item={item}
+        title={props.title}
+        price={props.price}
+        images={props.images}
+      />
       <div className=" mx-4 my-3 group relative">
         {/* Product image */}
         <div className="flex items-center justify-center">
@@ -69,12 +99,11 @@ function SingleProduct(props) {
           )}
           {/* <img src={productImage} alt="" className="" /> */}
           <div className="">
-          <img
-            src={`http://localhost:3000/images/${props.images[0]}`}
-            alt="product image"
-            className="rounded-xl border h-72 w-60 border-zinc-300"
-          />
-
+            <img
+              src={`http://localhost:3000/images/${props.images[0]}`}
+              alt="product image"
+              className="rounded-xl border h-72 w-60 border-zinc-300"
+            />
           </div>
         </div>
         {/* Product details */}
@@ -84,7 +113,7 @@ function SingleProduct(props) {
             <h2>{props.title}</h2>
             <span>{props.price}</span>
             {/* <span>★★★★★</span> */}
-            <span>{props.rating}</span>
+            <StarRating rating={props.rating} />
             <p className="md:hidden">{props.desc}</p>
           </div>
           {/* Buttons */}

@@ -49,7 +49,8 @@ function Home() {
         return res.json();
       })
       .then((result) => {
-        setProducts(result.products);
+        const shuffled = [...result.products].sort(() => Math.random() - 0.5);
+        setProducts(shuffled.slice(0, 4));
       });
   }, []);
   return (
@@ -78,9 +79,7 @@ function Home() {
                   {slides[slideindex].description}
                 </p>
 
-                <button
-                  className="bg-amber-500  px-8 py-3 text-sm font-semibold text-white rounded-2xl hover:bg-amber-600"
-                >
+                <button className="bg-amber-500  px-8 py-3 text-sm font-semibold text-white rounded-2xl hover:bg-amber-600">
                   SHOP NOW
                 </button>
               </div>
@@ -125,7 +124,9 @@ function Home() {
       </section>
 
       <section className=" h-screen flex flex-col justify-evenly text-center p-2 animate-fade-in-up">
-        <h2 className="font-serif text-4xl text-black underline">Latest News</h2>
+        <h2 className="font-serif text-4xl text-black underline">
+          Latest News
+        </h2>
         <div className="overflow-hidden h-2/3 p-2 relative w-full max-w-7xl mx-auto">
           <div
             className="flex gap-8 p-2 h-full transition-transform duration-1000 ease-in-out"
@@ -138,9 +139,7 @@ function Home() {
                 className="w-64 h-full object-cover"
               />
               <div className="pl-6 flex-1 flex flex-col justify-between space-y-2">
-                <h3 className="text-xl text-black">
-                  Need best pure honey?
-                </h3>
+                <h3 className="text-xl text-black">Need best pure honey?</h3>
                 <p className="text-base text-gray-600">
                   you are on the right path that serves pure organic honey.
                 </p>
