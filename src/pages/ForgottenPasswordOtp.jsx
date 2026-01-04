@@ -1,29 +1,36 @@
 import React, { useState } from "react";
 import { data, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ForgottenPasswordOtp() {
   const {email} = useParams()
-  const[OTP,setOTP]=useState("")
+  const navigate = useNavigate()
+  const[otp,setOTP]=useState(0)
+  const [error,setError] = useState(false)
   function handleChange(e) {
-    setOTP({ ...data, [e.target.name]: e.target.value})
-    console.log(OTP);
+    setOTP(e.target.value)
     
   }
    async function handleSubmit(e) {
     e.preventDefault();
     const response = await fetch(
-      "http://localhost:3000/api/user/forgototp",
+      "http://localhost:3000/api/user/verifyforgetotp",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email,OTP }),
+        body: JSON.stringify({ email,otp }),
+        
       }
     );
     const data = await response.json(); // <--- read JSON
-
-    if(data.err){
-    console.log("Error:", data.err);
+    // console.log(data);
+    
+    if (!response.ok){
+      setError(data.err)
+      setTimeout(()=>{setError(false)},2000)
+      return
     }
+    navigate(`/updatepassword/${email}`);
     
   }
   return (
@@ -34,7 +41,7 @@ function ForgottenPasswordOtp() {
             OTP verification
           </h2>
           <h4 className=" text-gray-500 text-l text-center py-4">
-            OTP is sent to your registere email id for verification.
+            OTP is sent to your registere email: {email}.
           </h4>
 
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -50,6 +57,7 @@ function ForgottenPasswordOtp() {
                 maxLength={6}
                 required
               />
+              {error && (<div className="text-xs text-red-600">* {error}</div>)}
                <button
               type="submit"
               className="bg-amber-400 hover:bg-amber-500 text-white font-semibold py-2 rounded-lg transition-colors"

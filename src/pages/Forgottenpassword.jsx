@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 function Forgottenpassword() {
   const [email, setEmail] = useState("");
+  const [error,setError]=useState(false)
   const navigate = useNavigate()
   async function handleSubmit(e) {
     e.preventDefault();
@@ -18,14 +19,12 @@ function Forgottenpassword() {
     if(response.ok){
       navigate(`/forgototp/${email}`)
     }
+    if(response.status==404){
+      setError(true)
+      setTimeout(()=>{setError(false)},2000)
+    }
     const data = await response.json(); // <--- read JSON
-    if(data.err){
-    console.log("Error:", data.err);
-    }
-    if(data.message){
-    console.log("Message:", data.message);
-    }
-    console.log(email)
+    
   }
   return (
     <>
@@ -54,6 +53,7 @@ function Forgottenpassword() {
                 required
               />
             </label>
+            {error && (<div className="text-xs text-red-600">* Invalid email</div>)}
 
             {/* Submit Button */}
             <button

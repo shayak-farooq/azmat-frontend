@@ -123,11 +123,9 @@ function Home() {
         </blockquote>
       </section>
 
-      <section className=" h-screen flex flex-col justify-evenly text-center p-2 animate-fade-in-up">
-        <h2 className="font-serif text-4xl text-black underline">
-          Latest News
-        </h2>
-        <div className="overflow-hidden h-2/3 p-2 relative w-full max-w-7xl mx-auto">
+      <section className="py-15 px-5 bg-white text-center animate-fade-in-up">
+        <h2 className="font-serif text-4xl mb-10 text-black">Latest News</h2>
+        <div className="overflow-hidden flex flex-wrap md:flex-no relative max-w-7xl mx-auto">
           <div
             className="flex gap-8 p-2 h-full transition-transform duration-1000 ease-in-out"
             // style={{ transform: `translateX(-${currentNewsSlide * 100}%)` }}
