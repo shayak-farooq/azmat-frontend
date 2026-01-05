@@ -5,15 +5,15 @@ function Orders() {
   const [products, setProducts] = useState([]);
   const Navigate = useNavigate();
   function formatDateTime(date) {
-  return new Date(date).toLocaleString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    // hour: "2-digit",
-    // minute: "2-digit",
-    // hour12: true,
-  });
-}
+    return new Date(date).toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      // hour: "2-digit",
+      // minute: "2-digit",
+      // hour12: true,
+    });
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("bearer");
@@ -30,17 +30,18 @@ function Orders() {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.orders);
+        // console.log(result.orders);
         const allproducts = result.orders.flatMap((item) =>
           item.productdetails.map((product) => ({
             ...product,
             orderStatus: item.status,
-            deliveryDate: item.deliveryDate?.actualDeliveryDate || item.deliveryDate?.expectedDeliveryDate,
+            actualDeliveryDate: item.deliveryDate?.actualDeliveryDate,
+            expectedDeliveryDate: item.deliveryDate?.expectedDeliveryDate,
           }))
         );
         setProducts(allproducts);
-        console.log("allproducts", allproducts);
-        console.log(products);
+        // console.log("allproducts", allproducts);
+        // console.log(products);
       });
   }, []);
   return (
@@ -61,14 +62,29 @@ function Orders() {
             <div className="md:flex justify-between md:w-full">
               <div className="flex flex-col">
                 <span>Name: {item.productid.title}</span>
-                <span>Weight: 500 gm</span>
+                <span>
+                  {item.productid.netWeight < 3
+                    ? `${item.productid.netWeight} Kg`
+                    : item.productid.netWeight > 100
+                    ? `${item.productid.netWeight} gm`
+                    : `${item.productid.netWeight} Kg`}
+                </span>
               </div>
               <div>
                 <span>Price: {item.priceDetails.sellingPrice}</span>
               </div>
               <div>Status: {item.orderStatus}</div>
               <div>
-                <span>Delivery Date: {formatDateTime(item.deliveryDate)}</span>
+                {item.actualDeliveryDate ? (
+                  <span>
+                    Delivery Date: {formatDateTime(item.actualDeliveryDate)}
+                  </span>
+                ) : (
+                  <span>
+                    Expected Delivery Date:{" "}
+                    {formatDateTime(item.expectedDeliveryDate)}
+                  </span>
+                )}
               </div>
             </div>
           </div>

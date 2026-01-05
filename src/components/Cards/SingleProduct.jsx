@@ -32,9 +32,9 @@ function SingleProduct(props) {
     text: "",
   });
   async function addToCart(productid) {
-    console.log("stock", props.instock);
+    // console.log("stock", props.instock);
     if (props.instock == 0) {
-      console.log("out of stock");
+      // console.log("out of stock");
       setItem({ state: true, text: "item is currently out of stock" });
       setTimeout(() => {
         setItem((prev) => ({ ...prev, state: false }));
@@ -42,8 +42,8 @@ function SingleProduct(props) {
       return;
     }
     const token = localStorage.getItem("bearer");
-    console.log(token);
-    console.log(productid);
+    // console.log(token);
+    // console.log(productid);
     const response = await fetch("http://localhost:3000/api/cart/addtocart", {
       method: "POST",
       headers: {
@@ -86,6 +86,7 @@ function SingleProduct(props) {
         item={item}
         title={props.title}
         price={props.price}
+        netWeight={props.netWeight}
         images={props.images}
       />
       <div className=" mx-4 my-3 group relative">
@@ -111,7 +112,14 @@ function SingleProduct(props) {
           {/* Name ,price,desc etc */}
           <div className=" text-center flex flex-col">
             <h2>{props.title}</h2>
-            <span>{props.price}</span>
+            <span>Rs:{props.price}</span>
+            <span>
+              {props.netWeight < 3
+                ? `${props.netWeight} Kg`
+                : props.netWeight > 100
+                ? `${props.netWeight} gm`
+                : `${props.netWeight} Kg`}
+            </span>
             {/* <span>★★★★★</span> */}
             <StarRating rating={props.rating} />
             <p className="md:hidden">{props.desc}</p>

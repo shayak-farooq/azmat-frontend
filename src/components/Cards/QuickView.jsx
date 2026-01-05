@@ -46,19 +46,18 @@ function QuickView(props) {
               <p className="text-sm text-gray-500">Azmat</p>
               <h2 className="text-lg font-semibold">{props.title}</h2>
               <div className="flex gap-2 items-center">
-                <span className="text-orange-500 font-semibold">Rs. {props.price}</span>
+                <span className="text-orange-500 font-semibold">Rs:{props.price}</span>
                 {/* <span className="text-gray-400 line-through text-sm">Rs 158</span> */}
               </div>
             </div>
 
             <div className="flex flex-col gap-3">
               <div>
-                <label className="block text-sm mb-1">Size:</label>
-                <select disabled className="w-full border rounded-md px-3 py-2 text-sm">
-                  <option>100gm</option>
-                  <option selected>500gm</option>
-                  <option>1kg</option>
-                </select>
+                <label className="block text-sm mb-1">Weight: {props.netWeight < 3
+                ? `${props.netWeight} Kg`
+                : props.netWeight > 100
+                ? `${props.netWeight} gm`
+                : `${props.netWeight} Kg`}</label>
               </div>
 
               {/* <div>

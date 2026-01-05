@@ -30,6 +30,7 @@ function AddProducts() {
     batchNo: "",
     desc: "",
     price: "",
+    weight: "",
     inStock: "",
     discount:''
   });
@@ -46,6 +47,7 @@ function AddProducts() {
     formData.append("batchNo", data.batchNo);
     formData.append("desc", data.desc);
     formData.append("price", data.price);
+    formData.append("weight", data.weight);
     formData.append("inStock", data.inStock);
     formData.append("discount", data.discount);
 
@@ -79,6 +81,7 @@ function AddProducts() {
       batchNo: "",
       desc: "",
       price: "",
+      weight: "",
       inStock: "",
       discount:''
     });
@@ -253,6 +256,16 @@ function AddProducts() {
                       type="number"
                       name="inStock"
                       value={data.inStock}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label htmlFor="weight">weight</label>
+                    <input
+                      className="bg-gray-100 rounded-xl p-2 "
+                      type="text"
+                      name="weight"
+                      value={data.weight}
                       onChange={handleChange}
                     />
                   </div>

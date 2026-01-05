@@ -13,7 +13,7 @@ function Products() {
       headers:{'content-type':'application/json'}
     })
     .then(response=>{
-      console.log(response);
+      // console.log(response);
       return response.json()
     })
     .then(data =>{
@@ -49,6 +49,7 @@ function Products() {
                 instock = {item.inStock}
                 title={item.title}
                 price={item.price} 
+                netWeight={item.netWeight} 
                 rating ={item.Rating}
                 desc={item.desc}
                 images ={item.productImages}

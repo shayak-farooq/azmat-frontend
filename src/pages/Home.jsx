@@ -47,13 +47,14 @@ function Home() {
       headers: { "contant-type": "application/json" },
     })
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((result) => {
         const shuffled = [...result.products].sort(() => Math.random() - 0.5);
         setProducts(shuffled.slice(0, 4));
       });
+      
+      
   }, []);
   return (
     <>
@@ -104,6 +105,7 @@ function Home() {
                 instock={item.inStock}
                 title={item.title}
                 price={item.price}
+                netWeight={item.netWeight}
                 rating={item.Rating}
                 desc={item.desc}
                 images={item.productImages}
