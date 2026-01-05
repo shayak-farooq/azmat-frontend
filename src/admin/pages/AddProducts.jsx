@@ -263,6 +263,7 @@ function AddProducts() {
                     <label htmlFor="weight">weight</label>
                     <input
                       className="bg-gray-100 rounded-xl p-2 "
+                      required
                       type="text"
                       name="weight"
                       value={data.weight}
@@ -282,7 +283,7 @@ function AddProducts() {
                 }}
                 className=""
               >
-                Discord
+                Discard
               </button>
             </div>
             <button

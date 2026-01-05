@@ -3,8 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
-  const [index,setIndex] = useState(0)
-  const [page, setPage] = useState(1)
+  const [index, setIndex] = useState(0);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("bearer");
@@ -14,13 +14,13 @@ const AdminProducts = () => {
       fetch("http://localhost:3000/api/products", {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Data", data.products);
+          // console.log("Data", data.products);
           setProducts(data.products);
         })
         .catch((err) => {
@@ -28,26 +28,29 @@ const AdminProducts = () => {
         });
     }
   }, []);
-  async function handleEdit(productid){
-   navigate(`/admin/editproduct/id=${productid}`)
+  async function handleEdit(productid) {
+    navigate(`/admin/editproduct/id=${productid}`);
   }
-  async function handleDelete(productid){
+  async function handleDelete(productid) {
     const token = localStorage.getItem("bearer");
-    const response = await fetch(`http://localhost:3000/api/products/deleteproduct/id=${productid}`, {
+    const response = await fetch(
+      `http://localhost:3000/api/products/deleteproduct/id=${productid}`,
+      {
         method: "delete",
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-      })
-      console.log(response);
-      if(response.status == 200){
-        setProducts(prev =>(
-        prev.filter(product => product._id !== productid )
-      ))
       }
-      // TODO: what to do after delete
-      // const result = await response.json()
+    );
+    console.log(response);
+    if (response.status == 200) {
+      setProducts((prev) =>
+        prev.filter((product) => product._id !== productid)
+      );
+    }
+    // TODO: what to do after delete
+    // const result = await response.json()
   }
   return (
     <>
@@ -78,29 +81,40 @@ const AdminProducts = () => {
                   <th>In Stock</th>
                 </tr>
               </thead>
-              {products  ? (
+              {products ? (
                 <tbody>
                   {products.slice(index, index + 10).map((item, index) => (
-                    <tr className="*:p-2" key={index} >
+                    <tr className="*:p-2" key={index}>
                       <td>{index + 1}</td>
                       <td className="w-2">
-                        <img src={`http://localhost:3000/images/${item.productImages[0]}`} alt="" />
+                        <img
+                          src={`http://localhost:3000/images/${item.productImages[0]}`}
+                          alt=""
+                        />
                       </td>
                       <td>
-                        <p>
-                        {item.title}
-                        </p>
-                        <p className="text-xs text-zinc-600">
-                          {item.desc}
-                        </p>
-
+                        <p>{item.title}</p>
+                        <p className="text-xs text-zinc-600">{item.desc}</p>
                       </td>
-                      <td>{item.price}</td>
+                      <td>Rs:{item.price}</td>
                       <td>{item.discount} %</td>
-                      <td>{item.netWeight}</td>
+                      <td>
+                        {item.netWeight < 3
+                          ? `${item.netWeight} Kg`
+                          : item.netWeight > 100
+                          ? `${item.netWeight} gm`
+                          : `${item.netWeight} Kg`}
+                      </td>
                       <td>{item.inStock}</td>
                       <td>
-                        <button className="mr-2 hover:cursor-pointer" onClick={()=>{handleEdit(item._id)}}>Edit</button>
+                        <button
+                          className="mr-2 hover:cursor-pointer"
+                          onClick={() => {
+                            handleEdit(item._id);
+                          }}
+                        >
+                          Edit
+                        </button>
                         {/* <button className="hover:cursor-pointer" onClick={()=>{handleDelete(item._id)}}>delete</button> */}
                       </td>
                     </tr>
@@ -116,9 +130,27 @@ const AdminProducts = () => {
             </table>
           </div>
           <div className="flex items-center justify-center">
-            <button className="font-black bg-black text-white p-2 rounded m-2 hover:cursor-pointer disabled:bg-gray-500" onClick={()=> {setIndex(index-10);setPage(page-1)}} disabled={index === 0}>&lt;</button>
+            <button
+              className="font-black bg-black text-white p-2 rounded m-2 hover:cursor-pointer disabled:bg-gray-500"
+              onClick={() => {
+                setIndex(index - 10);
+                setPage(page - 1);
+              }}
+              disabled={index === 0}
+            >
+              &lt;
+            </button>
             <div>{page}</div>
-            <button className="font-black bg-black text-white p-2 rounded m-2 hover:cursor-pointer disabled:bg-gray-500" onClick={()=> {setIndex(index+10);setPage(page+1)}} disabled={index +10 >= products.length}>&gt;</button>
+            <button
+              className="font-black bg-black text-white p-2 rounded m-2 hover:cursor-pointer disabled:bg-gray-500"
+              onClick={() => {
+                setIndex(index + 10);
+                setPage(page + 1);
+              }}
+              disabled={index + 10 >= products.length}
+            >
+              &gt;
+            </button>
           </div>
         </div>
       </div>

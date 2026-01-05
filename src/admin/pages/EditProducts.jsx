@@ -15,7 +15,7 @@ function EditProducts() {
     desc: "",
     price: "",
     inStock: "",
-    weight: "",
+    netWeight: "",
     discount:'',
     productImages: [],
   });
@@ -29,11 +29,11 @@ function EditProducts() {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         return response.json();
       })
       .then((result) => {
-        console.log(result.product);
+        // console.log(result.product);
         setData(result.product);
       })
       .catch((err) => console.error(err));
@@ -49,7 +49,7 @@ function EditProducts() {
     formData.append("batchNo", data.batchNo);
     formData.append("desc", data.desc);
     formData.append("price", data.price);
-    formData.append("weight", data.weight);
+    formData.append("weight", data.netWeight);
     formData.append("inStock", data.inStock);
     formData.append("discount", data.discount);
 
@@ -60,7 +60,7 @@ function EditProducts() {
     newImages.forEach((img)=>{
       formData.append("NewImages", img)
     })
-    console.log(formData);
+    // console.log(formData);
     const token = localStorage.getItem("bearer");
     const response = await fetch(
       `http://localhost:3000/api/products/updateproduct/${id}`,
@@ -73,12 +73,12 @@ function EditProducts() {
       }
     );
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     if (response.status == 200) {
-      navigate("/admin/products");
+      navigate("/admin");
     }
     if (response.status != 200) {
-      console.log(result.err);
+      // console.log(result.err);
       setErr(result.err);
     }
   }
@@ -295,9 +295,10 @@ function EditProducts() {
                     <label htmlFor="weight">Weight</label>
                     <input
                       className="bg-gray-100 rounded-xl p-2 "
+                      required
                       type="text"
-                      name="weight"
-                      value={data.weight}
+                      name="netWeight"
+                      value={data.netWeight}
                       onChange={handleChange}
                     />
                   </div>
