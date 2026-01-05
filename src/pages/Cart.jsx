@@ -143,7 +143,7 @@ function Cart() {
                             </div>
                           </li>
                           <li className="lg:flex justify-center items-center lg:border-r lg:border-t border-b py-3 lg:px-15 px-5">
-                            {item.productdetails.price}
+                            RS:{item.productdetails.price}
                           </li>
                           <li className="flex lg:justify-center items-center gap-3 lg:border-r lg:border-t border-b py-3 lg:px-15 px-5">
                             <div className="inline-flex justify-center items-center rounded-xl border border-zinc-300 bg-white ">

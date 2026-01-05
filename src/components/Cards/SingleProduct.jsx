@@ -112,7 +112,7 @@ function SingleProduct(props) {
           {/* Name ,price,desc etc */}
           <div className=" text-center flex flex-col">
             <h2>{props.title}</h2>
-            <span>{props.price}</span>
+            <span>Rs:{props.price}</span>
             <span>
               {props.netWeight < 3
                 ? `${props.netWeight} Kg`

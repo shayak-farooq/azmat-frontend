@@ -301,7 +301,7 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="w-2/8 flex justify-end">
-                      <span>{item.productdetails.price}</span>
+                      <span>Rs: {item.productdetails.price}</span>
                     </div>
                   </div>
                 ))}
@@ -311,7 +311,7 @@ function Checkout() {
               <div className="flex justify-between">
                 <p>Sub total : {products.length} items </p>
 
-                <p>Rs {totalAmount}</p>
+                <p>Rs: {totalAmount}</p>
               </div>
               <div className="flex justify-between py-2">
                 <p>Shipping</p>
@@ -319,7 +319,7 @@ function Checkout() {
               </div>
               <div className="flex justify-between border-t py-2">
                 <p>Total</p>
-                <span>Rs {totalAmount}</span>
+                <span>Rs: {totalAmount}</span>
               </div>
             </div>
           </div>

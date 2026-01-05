@@ -46,7 +46,7 @@ function QuickView(props) {
               <p className="text-sm text-gray-500">Azmat</p>
               <h2 className="text-lg font-semibold">{props.title}</h2>
               <div className="flex gap-2 items-center">
-                <span className="text-orange-500 font-semibold">Rs. {props.price}</span>
+                <span className="text-orange-500 font-semibold">Rs:{props.price}</span>
                 {/* <span className="text-gray-400 line-through text-sm">Rs 158</span> */}
               </div>
             </div>
