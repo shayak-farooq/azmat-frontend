@@ -101,7 +101,7 @@ const AdminProducts = () => {
                       <td>
                         {item.netWeight < 3
                           ? `${item.netWeight} Kg`
-                          : item.netWeight > 100
+                          : item.netWeight > 10
                           ? `${item.netWeight} gm`
                           : `${item.netWeight} Kg`}
                       </td>

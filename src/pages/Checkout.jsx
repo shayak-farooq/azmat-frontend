@@ -295,7 +295,7 @@ function Checkout() {
                         color/
                         {item.productdetails.netWeight < 3
                           ? `${item.productdetails.netWeight} Kg`
-                          : item.productdetails.netWeight > 100
+                          : item.productdetails.netWeight > 10
                           ? `${item.productdetails.netWeight} gm`
                           : `${item.productdetails.netWeight} Kg`}
                       </div>

@@ -55,7 +55,7 @@ function QuickView(props) {
               <div>
                 <label className="block text-sm mb-1">Weight: {props.netWeight < 3
                 ? `${props.netWeight} Kg`
-                : props.netWeight > 100
+                : props.netWeight > 10
                 ? `${props.netWeight} gm`
                 : `${props.netWeight} Kg`}</label>
               </div>

@@ -116,7 +116,7 @@ function SingleProduct(props) {
             <span>
               {props.netWeight < 3
                 ? `${props.netWeight} Kg`
-                : props.netWeight > 100
+                : props.netWeight > 10
                 ? `${props.netWeight} gm`
                 : `${props.netWeight} Kg`}
             </span>
@@ -125,7 +125,7 @@ function SingleProduct(props) {
             <p className="md:hidden">{props.desc}</p>
           </div>
           {/* Buttons */}
-          <div className="flex justify-center items-center w-full lg:absolute bottom-24 opacity-100 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+          <div className="flex justify-center items-center w-full lg:absolute bottom-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
             <button
               onClick={() => {
                 addToCart(props.productid);
