@@ -31,15 +31,17 @@ function About() {
               the readable content of a page when looking at its layout the
               point of using"
           />
-          <About_ourVision
-            title="01. Ourvision"
-            desc="  It is a long established fact that a reader will be distracted by
+         
+        </div>
+      </div>
+
+      <About_product
+        title="About our product"
+        desc="It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout the
               point of using"
-          />
-            </div>
-            </div>
-          
+        src="https://qx-honee.myshopify.com/cdn/shop/files/about-us.jpg"
+      />
       <About_Certificate title="Certifications"
         desc="It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout the
